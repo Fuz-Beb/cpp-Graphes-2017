@@ -14,7 +14,7 @@ private:
 	FILE * pPARFichier;
 
 public:
-	// Constructeurs / Descructeurs
+	// Constructeurs / Destructeurs
 
 	/*****************************
 	Constructeur par défaut
