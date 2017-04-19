@@ -79,12 +79,14 @@
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
     <ClCompile Include="CParse.cpp" />
+    <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CException.h" />
     <ClInclude Include="CParse.h" />
+    <ClInclude Include="CSommet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

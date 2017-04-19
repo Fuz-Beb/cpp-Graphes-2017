@@ -10,13 +10,13 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CArc::CArc() 
 {
-	uiARCDestination = NULL;
+	uiARCDestination = 0;
 }
 
 /*****************************
 Constructeur de recopie
 ******************************
-Entrée : unsigned int uiDestination
+Entrée : CArc & arc
 Necessité : néant
 Sortie : néant
 Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
@@ -57,7 +57,7 @@ Methode : Lire Destination
 Entrée : néant
 Necessité : néant
 Sortie : unsigned int uiDestination
-Entraine : retourne le chemin de l'attribut
+Entraine : retourne l'attribut
 *****************************/
 unsigned int CArc::ARCGetDestination()
 {

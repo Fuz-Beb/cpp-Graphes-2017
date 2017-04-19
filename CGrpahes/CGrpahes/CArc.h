@@ -23,12 +23,12 @@ public:
 	/*****************************
 	Constructeur de recopie
 	******************************
-	Entrée : unsigned int uiDestination
+	Entrée : CArc & arc
 	Necessité : néant
 	Sortie : néant
 	Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 	*****************************/
-	explicit CArc(CArc & arc);
+	CArc(CArc & arc);
 
 	/*****************************
 	Constructeur de confort
@@ -58,7 +58,7 @@ public:
 	Entrée : néant
 	Necessité : néant
 	Sortie : unsigned int uiDestination
-	Entraine : retourne le chemin de l'attribut
+	Entraine : retourne l'attribut
 	*****************************/
 	unsigned int ARCGetDestination();
 
