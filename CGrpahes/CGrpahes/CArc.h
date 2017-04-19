@@ -28,7 +28,7 @@ public:
 	Sortie : néant
 	Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 	*****************************/
-	CArc(CArc & arc);
+	explicit CArc(CArc & arc);
 
 	/*****************************
 	Constructeur de confort

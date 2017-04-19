@@ -8,6 +8,8 @@ class CSommet
 private:
 	// Attributs
 	unsigned int uiSOMNum;
+	unsigned int uiSOMNbrArcArrivant;
+	unsigned int uiSOMNbrArcPartant;
 	CArc ** ppqSOMArcArrivant;
 	CArc ** ppqSOMArcPartant;
 
@@ -32,7 +34,7 @@ public:
 	Sortie : néant
 	Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 	*****************************/
-	CSommet(CSommet & sommet);
+	explicit CSommet(CSommet & sommet);
 
 	/*****************************
 	Constructeur de confort
@@ -77,6 +79,46 @@ public:
 	void SOMSetNum(unsigned int uiNum);
 
 	/*****************************
+	Methode : Lire Nombre Arc
+	******************************
+	Entrée : néant
+	Necessité : néant
+	Sortie : unsigned int uiNbr
+	Entraine : retourne l'attribut
+	*****************************/
+	unsigned int SOMGetNbrArcArrivant();
+
+	/*****************************
+	Methode : Modifier Nombre Arc
+	******************************
+	Entrée : unsigned int uiNbr
+	Necessité : néant
+	Sortie : néant
+	Entraine : affecte le paramètre à l'attribut
+	*****************************/
+	void SOMSetNbrArcArrivant(unsigned int uiNbr);
+
+	/*****************************
+	Methode : Lire Nombre Arc
+	******************************
+	Entrée : néant
+	Necessité : néant
+	Sortie : unsigned int uiNbr
+	Entraine : retourne l'attribut
+	*****************************/
+	unsigned int SOMGetNbrArcPartant();
+
+	/*****************************
+	Methode : Modifier Nombre Arc
+	******************************
+	Entrée : unsigned int uiNbr
+	Necessité : néant
+	Sortie : néant
+	Entraine : affecte le paramètre à l'attribut
+	*****************************/
+	void SOMSetNbrArcPartant(unsigned int uiNbr);
+
+	/*****************************
 	Methode : Lire Arc Arrivant
 	******************************
 	Entrée : néant
@@ -84,7 +126,7 @@ public:
 	Sortie : CArc **
 	Entraine : retourne l'attribut
 	*****************************/
-	CArc ** SOMGetArcArrivant();
+	CArc ** SOMGetListArcArrivant();
 
 	/*****************************
 	Methode : Modifier Arc Arrivant
@@ -94,7 +136,7 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre à l'attribut
 	*****************************/
-	unsigned int SOMSetArcArrivant(CArc ** arc);
+	unsigned int SOMSetListArcArrivant(CArc ** arc);
 
 	/*****************************
 	Methode : Lire Arc Partant
@@ -104,7 +146,7 @@ public:
 	Sortie : CArc **
 	Entraine : retourne l'attribut
 	*****************************/
-	CArc ** SOMGetArcPartant();
+	CArc ** SOMGetListArcPartant();
 
 	/*****************************
 	Methode : Modifier Arc Partant
@@ -114,6 +156,36 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre à l'attribut
 	*****************************/
-	unsigned int SOMSetArcPartant(CArc ** arc);
+	unsigned int SOMSetListArcPartant(CArc ** arc);
+
+	/*****************************
+	Methode : Ajouter Arc Arrivant
+	******************************
+	Entrée : CArc * arc
+	Necessité : néant
+	Sortie : néant
+	Entraine : affecte le paramètre arc à la liste des arcs
+	*****************************/
+	unsigned int SOMAddArcArrivant(CArc * arc);
+
+	/*****************************
+	Methode : Ajouter Arc Partant
+	******************************
+	Entrée : CArc * arc
+	Necessité : néant
+	Sortie : néant
+	Entraine : affecte le paramètre arc à la liste des arcs
+	*****************************/
+	unsigned int SOMAddArcPartant(CArc * arc);
+
+	/*****************************
+	Methode : Compter le nombre d'arc dans la liste
+	******************************
+	Entrée : CArc ** listArc
+	Necessité : néant
+	Sortie : uiCompteur
+	Entraine : compte le nombre d'arcs dans la liste et retourne le nombre
+	*****************************/
+	unsigned int SOMCompterArc(CArc ** listArc);
 };
 #endif
