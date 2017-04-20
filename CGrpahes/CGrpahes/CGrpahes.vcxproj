@@ -80,6 +80,7 @@
     <ClCompile Include="CException.cpp" />
     <ClCompile Include="CGraphe.cpp" />
     <ClCompile Include="CParse.cpp" />
+    <ClCompile Include="CParseGraph.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -88,6 +89,7 @@
     <ClInclude Include="CException.h" />
     <ClInclude Include="CGraphe.h" />
     <ClInclude Include="CParse.h" />
+    <ClInclude Include="CParseGraph.h" />
     <ClInclude Include="CSommet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
