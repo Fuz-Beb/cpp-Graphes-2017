@@ -26,17 +26,19 @@ Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 *****************************/
 CSommet::CSommet(CSommet & sommet)
 {	
-	if(ppqSOMArcArrivant == nullptr)
+	if(ppqSOMArcArrivant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(sommet.ppqSOMArcArrivant));
 		if(ppqSOMArcArrivant == nullptr)
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
 
-	if(ppqSOMArcPartant == nullptr)
+	if(ppqSOMArcPartant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(sommet.ppqSOMArcPartant));
 		if(ppqSOMArcPartant == nullptr)
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
 
 	// Affectation de la liste des arcs Arrivant et Partant
 	ppqSOMArcArrivant = sommet.ppqSOMArcArrivant;
@@ -58,17 +60,19 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant)
 {
-	if(ppqSOMArcArrivant == nullptr)
+	if(ppqSOMArcArrivant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
 		if(ppqSOMArcArrivant == nullptr)
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
 
-	if(ppqSOMArcPartant == nullptr)
+	if(ppqSOMArcPartant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
 		if(ppqSOMArcPartant == nullptr)
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
 
 	// Affectation de la liste des arcs Arrivant et Partant
 	ppqSOMArcArrivant = ppqSommetArcArrivant;
@@ -91,7 +95,6 @@ Entraine : l'objet est détruit
 CSommet::~CSommet()
 {
 	unsigned int uiBoucle = 0;
-
 
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {

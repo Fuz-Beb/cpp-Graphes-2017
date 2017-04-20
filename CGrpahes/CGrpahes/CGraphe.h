@@ -43,7 +43,7 @@ public:
 	Sortie : néant
 	Entraine : l'objet en cours est initialisé
 	*****************************/
-	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets);
+	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets, CArc ** arcs);
 
 	/*****************************
 	Destructeur par défaut
