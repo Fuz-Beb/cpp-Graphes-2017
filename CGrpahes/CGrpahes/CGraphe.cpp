@@ -1,4 +1,5 @@
 #include "CGraphe.h"
+#include "CException.h"
 
 /*****************************
 Constructeur par défaut
@@ -10,7 +11,10 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CGraphe::CGraphe()
 {
-
+	ppqGRASommets = nullptr;
+	ppqGRAArcs = nullptr;
+	uiGRANbSommets = 0;
+	uiGRANbArcs = 0;
 }
 
 /*****************************
@@ -23,7 +27,28 @@ Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 *****************************/
 CGraphe::CGraphe(CGraphe & graphe)
 {
+	if(ppqGRASommets != nullptr)
+		delete(ppqGRASommets);
 
+	// Allocation de la liste sommet
+	ppqGRASommets = (CSommet **)malloc(sizeof(CSommet*) * graphe.uiGRANbSommets);
+	
+	if(ppqGRASommets == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+
+	if(ppqGRAArcs != nullptr)
+		delete(ppqGRAArcs);
+
+	// Allocation de la liste arc
+	ppqGRAArcs = (CArc **)malloc(sizeof(CArc*) * graphe.uiGRANbArcs);
+		
+	if(ppqGRAArcs == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+
+	ppqGRASommets = graphe.ppqGRASommets;
+	ppqGRAArcs = graphe.ppqGRAArcs;
+	uiGRANbSommets = graphe.uiGRANbSommets;
+	uiGRANbArcs = graphe.uiGRANbArcs;
 }
 
 /*****************************
@@ -34,9 +59,30 @@ Necessité : néant
 Sortie : néant
 Entraine : l'objet en cours est initialisé
 *****************************/
-CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets)
+CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets, CArc ** arcs)
 {
+	if(ppqGRASommets != nullptr)
+		delete(ppqGRASommets);
 
+	// Allocation de la liste sommet
+	ppqGRASommets = (CSommet **)malloc(sizeof(CSommet*) * uiNbSommets);
+	
+	if(ppqGRASommets == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+
+	if(ppqGRAArcs != nullptr)
+		delete(ppqGRAArcs);
+
+	// Allocation de la liste arc
+	ppqGRAArcs = (CArc **)malloc(sizeof(CArc*) * uiNbArcs);
+		
+	if(ppqGRAArcs == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+
+	ppqGRASommets = sommets;
+	ppqGRAArcs = arcs;
+	uiGRANbSommets = uiNbSommets;
+	uiGRANbArcs = uiNbArcs;
 }
 
 /*****************************
@@ -49,7 +95,28 @@ Entraine : l'objet est détruit
 *****************************/
 CGraphe::~CGraphe()
 {
+	unsigned int uiBoucle = 0;
 
+	// Boucle pour liberer la liste des sommets
+	while(uiBoucle != uiGRANbSommets) {
+		ppqGRASommets[uiBoucle] = nullptr;
+		delete(ppqGRASommets[uiBoucle]);
+		uiBoucle++;
+	}
+
+	uiBoucle = 0;
+
+	// Boucle pour liberer la liste des arcs
+	while(uiBoucle != uiGRANbArcs) {
+		ppqGRAArcs[uiBoucle] = nullptr;
+		delete(ppqGRAArcs[uiBoucle]);
+		uiBoucle++;
+	}
+
+	ppqGRASommets = nullptr;
+	delete(ppqGRASommets);
+	ppqGRAArcs = nullptr;
+	delete(ppqGRAArcs);
 }
 
 // Accesseurs
