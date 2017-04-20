@@ -85,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CException.h" />
+    <ClInclude Include="CGraphe.h" />
     <ClInclude Include="CParse.h" />
     <ClInclude Include="CSommet.h" />
   </ItemGroup>
