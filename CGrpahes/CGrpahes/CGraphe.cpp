@@ -271,7 +271,7 @@ Entraine : récupère un sommet du graphe
 *****************************/
 CSommet * CGraphe::GRAGetSommet(unsigned int uiSommet)
 {
-
+	
 }
 
 /*****************************
@@ -347,7 +347,7 @@ Necessité : néant
 Sortie : liste de sommets trouvés
 Entraine : cherche et renvoi la liste des sommets trouvés
 *****************************/
-CSommet ** CGraphe::GRATrouverSommet(unsigned int uiSommet)
+CSommet * CGraphe::GRATrouverSommet(unsigned int uiSommet)
 {
 
 }

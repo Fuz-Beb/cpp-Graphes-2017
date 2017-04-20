@@ -41,7 +41,8 @@ Necessité : néant
 Sortie : néant
 Entraine : l'object en cours en initialisé avec les même attributs que l'objet passé en paramètre
 *****************************/
-CException::CException(CException & EXCObjet) {
+CException::CException(CException & EXCObjet)
+{
 	uiEXCCode = EXCObjet.uiEXCCode;
 
 	psEXCMessage = (char*) malloc(sizeof(char) * strlen(EXCObjet.psEXCMessage) + 1);
