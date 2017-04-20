@@ -30,14 +30,14 @@ CSommet::CSommet(CSommet & sommet)
 		// Allocation des arcs arrivant
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(sommet.ppqSOMArcArrivant));
 		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 	}
 
 	if(ppqSOMArcPartant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(sommet.ppqSOMArcPartant));
 		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 	}
 
 	// Affectation de la liste des arcs Arrivant et Partant
@@ -68,7 +68,7 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc **
 	// Allocation des arcs arrivant
 	ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
 	if(ppqSOMArcArrivant == nullptr)
-		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
 	if(ppqSOMArcPartant != nullptr) {
 		ppqSOMArcPartant = nullptr;
@@ -78,7 +78,7 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc **
 	// Allocation des arcs arrivant
 	ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
 	if(ppqSOMArcPartant == nullptr)
-		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
 	// Affectation de la liste des arcs Arrivant et Partant
 	ppqSOMArcArrivant = ppqSommetArcArrivant;
@@ -111,7 +111,7 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * p
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
 
 		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 	}
 
 	// Fin - Partie Arc Arrivant
@@ -127,7 +127,7 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * p
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
 
 		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 	}
 
 	// Fin - Partie Arc Partant
@@ -322,7 +322,7 @@ unsigned int CSommet::SOMAddArcArrivant(CArc * arc)
 		// Allocation des arcs arrivant
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(CArc *));
 		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 		ppqSOMArcArrivant[0] = arc;
 	}
 	// Sinon reallocation
@@ -330,14 +330,14 @@ unsigned int CSommet::SOMAddArcArrivant(CArc * arc)
 		// Reallocation des arcs arrivant
 		(CArc **)realloc(ppqSOMArcArrivant, sizeof(ppqSOMArcArrivant) + sizeof(CArc *));
 		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
 		ppqSOMArcArrivant[uiSOMNbrArcArrivant] = arc;
 
 		if(ppqSOMArcArrivant[uiSOMNbrArcArrivant] != nullptr)
 			uiSOMNbrArcArrivant++;
 		else
-			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
+			throw CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
 	}
 }
 
@@ -356,7 +356,7 @@ unsigned int CSommet::SOMAddArcPartant(CArc * arc)
 		// Allocation des arcs arrivant
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(CArc *));
 		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 		ppqSOMArcPartant[0] = arc;
 	}
 	// Sinon reallocation
@@ -364,14 +364,14 @@ unsigned int CSommet::SOMAddArcPartant(CArc * arc)
 		// Reallocation des arcs arrivant
 		(CArc **)realloc(ppqSOMArcPartant, sizeof(ppqSOMArcPartant) + sizeof(CArc *));
 		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
 		ppqSOMArcPartant[uiSOMNbrArcPartant] = arc;
 
 		if(ppqSOMArcPartant[uiSOMNbrArcPartant] != nullptr)
 			uiSOMNbrArcArrivant++;
 		else
-			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
+			throw CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
 	}
 }
 

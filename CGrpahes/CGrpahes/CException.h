@@ -18,6 +18,8 @@
 #define ECHECADDARC 10
 #define ECHECNEWSOMMET 11
 #define ECHECNONTROUVE 12
+#define ECHECDOUBLONARC 13
+#define ERREURARGS 14
 
 class CException
 {
@@ -57,7 +59,7 @@ public:
 	Sortie : néant
 	Entraine : l'object en cours en initialisé avec les même attributs que l'objet passé en paramètre
 	*****************************/
-	explicit CException(CException & EXCObjet);
+	CException(CException & EXCObjet);
 
 	/*****************************
 	Destructeur par défaut

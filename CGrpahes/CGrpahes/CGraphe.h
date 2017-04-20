@@ -109,22 +109,22 @@ public:
 	/*****************************
 	Methode : Supprimer Sommet
 	******************************
-	Entrée : CSommet & sommet
+	Entrée : CSommet * sommet
 	Necessité : néant
 	Sortie : néant
 	Entraine : supprime un sommet au graphe
 	*****************************/
-	void GRASupprimerSommet(CSommet & sommet);
+	void GRASupprimerSommet(CSommet * sommet);
 
 	/*****************************
 	Methode : Modifier Sommet
 	******************************
-	Entrée : unsigned int uiNum, CSommet & SOMSommet
+	Entrée : unsigned int uiNum, CSommet * SOMSommet
 	Necessité : néant
 	Sortie : néant
 	Entraine : modifie un sommet au graphe
 	*****************************/
-	void GRAModifierSommet(unsigned int uiNum, CSommet & SOMSommet);
+	void GRAModifierSommet(unsigned int uiNum, CSommet * SOMSommet);
 
 	/*****************************
 	Methode : Récupérer Sommet
@@ -144,37 +144,17 @@ public:
 	Sortie : néant
 	Entraine : ajoute un nouvel arc au graphe
 	*****************************/
-	void GRAAjoutArc(unsigned int uiDestination, CSommet * sommet);
+	void GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet);
 
 	/*****************************
 	Methode : Supprimer Arc
 	******************************
-	Entrée : CArc * arc
+	Entrée : CArc ** ARCarc
 	Necessité : néant
 	Sortie : néant
 	Entraine : supprime un arc au graphe
 	*****************************/
-	void GRASupprimerArc(CArc * arc);
-
-	/*****************************
-	Methode : Modifier Arc
-	******************************
-	Entrée : unsigned int uiDestination, CSommet * sommet
-	Necessité : néant
-	Sortie : néant
-	Entraine : modifie un arc au graphe
-	*****************************/
-	void GRAModifierArc(unsigned int uiDestination, CSommet * sommet);
-
-	/*****************************
-	Methode : Récupérer Arc
-	******************************
-	Entrée : unsigned int uiDestination
-	Necessité : néant
-	Sortie : néant
-	Entraine : récupère un arc du graphe
-	*****************************/
-	CSommet * GRAGetArc(unsigned int uiDestination);
+	void GRASupprimerArc(CArc ** ARCarc);
 
 	/*****************************
 	Methode : Afficher Arc
@@ -189,21 +169,21 @@ public:
 	/*****************************
 	Methode : Trouver Sommet
 	******************************
-	Entrée : néant
+	Entrée : unsigned int uiSommet
 	Necessité : néant
-	Sortie : liste de sommets trouvés
-	Entraine : cherche et renvoi la liste des sommets trouvés
+	Sortie : CSommet * 
+	Entraine : cherche et renvoi le sommet
 	*****************************/
 	CSommet * GRATrouverSommet(unsigned int uiSommet);
 
 	/*****************************
 	Methode : Trouver Arc
 	******************************
-	Entrée : néant
+	Entrée : CSommet * SOMSource, CSommet * SOMDestination
 	Necessité : néant
-	Sortie : liste d'arcs trouvés
-	Entraine : cherche et renvoi la liste des arcs trouvés
+	Sortie : CArc **
+	Entraine : cherche et renvoi l'arc
 	*****************************/
-	CArc ** GRATrouverArc(unsigned int uiDestination);
+	CArc ** GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination);
 }
 #endif
