@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include "CGraphe.h"
 #include "CException.h"
 
@@ -407,6 +408,8 @@ CArc ** CGraphe::GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination)
 	return ARCSourceDestination;
 }
 =======
+=======
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 #include "CGraphe.h"
 #include "CException.h"
 
@@ -444,7 +447,11 @@ CGraphe::CGraphe(CGraphe & graphe)
 	ppqGRASommets = (CSommet **)malloc(sizeof(CSommet*) * graphe.uiGRANbSommets);
 	
 	if(ppqGRASommets == nullptr)
+<<<<<<< HEAD
 		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+=======
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	ppqGRASommets = graphe.ppqGRASommets;
 	uiGRANbSommets = graphe.uiGRANbSommets;
@@ -470,7 +477,11 @@ CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** som
 	ppqGRASommets = (CSommet **)malloc(sizeof(CSommet*) * uiNbSommets);
 	
 	if(ppqGRASommets == nullptr)
+<<<<<<< HEAD
 		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+=======
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	ppqGRASommets = sommets;
 	uiGRANbSommets = uiNbSommets;
@@ -567,14 +578,22 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 	// Unicité avant création d'un sommet
 	CSommet * SOMlistSommets = GRATrouverSommet(uiSommet);
 	if(SOMlistSommets != nullptr)
+<<<<<<< HEAD
 		throw new CException(ECHECNEWSOMMET, "Echec il existe deja un sommet avec ce numero");
+=======
+		throw CException(ECHECNEWSOMMET, "Echec il existe deja un sommet avec ce numero");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	// Création d'un nouveau sommet
 	CSommet * SOMnewSommet = new CSommet(uiSommet, ppqArrivant, ppqPartant);
 
 	// Vérification de la bonne création
 	if(SOMnewSommet == nullptr)
+<<<<<<< HEAD
 		throw new CException(ECHECNEWSOMMET, "Echec de la création d'un nouveau sommet");
+=======
+		throw CException(ECHECNEWSOMMET, "Echec de la création d'un nouveau sommet");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	// Vérification d'une présence de liste
 	if(ppqGRASommets == nullptr) {
@@ -582,7 +601,11 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 		ppqGRASommets = (CSommet **)malloc(sizeof(CSommet *));
 		// Vérification de la bonne création
 		if(ppqGRASommets == nullptr)
+<<<<<<< HEAD
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+=======
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 	}
 	// Dans le cas où la liste est déjà existante
 	else {
@@ -590,7 +613,11 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 		(CSommet **)realloc(ppqGRASommets, sizeof(ppqGRASommets) + sizeof(CSommet *));
 		// Vérification de la bonne réallocation
 		if(ppqGRASommets == nullptr)
+<<<<<<< HEAD
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+=======
+			throw CException(ECHECALLOCATION, "Echec de l'allocation");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 	}
 
 	// Ajout à la liste du graphe le sommet et incrément son nombre
@@ -604,26 +631,46 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 /*****************************
 Methode : Supprimer Sommet
 ******************************
+<<<<<<< HEAD
 Entrée : CSommet & sommet
+=======
+Entrée : CSommet * sommet
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 Necessité / Préconditions : fournir un objet en paramètre non nul
 Sortie : néant
 Entraine : supprime un sommet au graphe
 *****************************/
+<<<<<<< HEAD
 void CGraphe::GRASupprimerSommet(CSommet & sommet)
+=======
+void CGraphe::GRASupprimerSommet(CSommet * sommet)
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 {
 	unsigned int uiBoucle = 0;
 
 	// Permet de supprimer les arcs liés à ce sommet
+<<<<<<< HEAD
 	sommet.SOMViderSommet();
 
 	// Vérification de la présence d'une liste non nul
 	if(ppqGRASommets == nullptr)
 		throw new CException(ECHECNONTROUVE, "Echec la liste des sommets est nul");
+=======
+	sommet->SOMViderSommet();
+
+	// Vérification de la présence d'une liste non nul
+	if(ppqGRASommets == nullptr)
+		throw CException(ECHECNONTROUVE, "Echec la liste des sommets est nul");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	// Realloc de la bonne taille - 1 sommet
 	(CSommet **)realloc(ppqGRASommets, sizeof(ppqGRASommets) - sizeof(CSommet *));
 	if(ppqGRASommets == nullptr)
+<<<<<<< HEAD
 		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+=======
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 
 	// Suppression à la liste du graphe le sommet et décrémentant son nombre
 	delete(ppqGRASommets[uiGRANbSommets]);
@@ -633,11 +680,16 @@ void CGraphe::GRASupprimerSommet(CSommet & sommet)
 /*****************************
 Methode : Modifier Sommet
 ******************************
+<<<<<<< HEAD
 Entrée : unsigned int uiNum, CSommet & SOMSommet
+=======
+Entrée : unsigned int uiNum, CSommet * SOMSommet
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 Necessité / Préconditions : fournir un objet en paramètre non nul
 Sortie : néant
 Entraine : modifie un sommet au graphe
 *****************************/
+<<<<<<< HEAD
 void CGraphe::GRAModifierSommet(unsigned int uiNum, CSommet & SOMSommet)
 {
 	/*
@@ -668,19 +720,46 @@ void CGraphe::GRAModifierSommet(unsigned int uiNum, CSommet & SOMSommet)
 
 	SOMSommet.SOMSetNum(uiNum);
 	*/
+=======
+void CGraphe::GRAModifierSommet(unsigned int uiNum, CSommet * SOMSommet)
+{
+	// Unicité avant modification d'un sommet
+	CSommet * SOMlistSommets = GRATrouverSommet(uiNum);
+	if(SOMlistSommets != nullptr)
+		throw CException(ECHECNEWSOMMET, "Echec il existe deja un sommet avec ce numero");
+
+	// FAIRE ICI UNE MODIF DE TOUT LES ARCS EN RELATION AVEC SOMSommet num actuel avant chang
+	unsigned int uiBoucle = 0;
+
+	// Permet d'actualiser le nouveau numéro du sommet aux arcs précédant
+	while(uiBoucle != SOMSommet->SOMGetNbrArcArrivant) {
+		SOMSommet->SOMGetListArcArrivant[uiBoucle]->ARCSetDestination(uiNum);
+		uiBoucle++;
+	}
+	// Permet de changer le numéro du sommet
+	SOMSommet->SOMSetNum(uiNum);
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 }
 
 /*****************************
 Methode : Récupérer Sommet
 ******************************
 Entrée : unsigned int uiSommet
+<<<<<<< HEAD
 Necessité : néant
+=======
+Necessité : GRATrouverSommet
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 Sortie : néant
 Entraine : récupère un sommet du graphe
 *****************************/
 CSommet * CGraphe::GRAGetSommet(unsigned int uiSommet)
 {
+<<<<<<< HEAD
 	
+=======
+	return GRATrouverSommet(uiSommet);
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 }
 
 /*****************************
@@ -691,19 +770,45 @@ Necessité : néant
 Sortie : néant
 Entraine : ajoute un nouvel arc au graphe
 *****************************/
+<<<<<<< HEAD
 void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * sommet)
 {
 
+=======
+void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
+{
+
+	CSommet * SOMDestination = GRATrouverSommet(uiDestination);
+	CArc * ARCNewArc = nullptr;
+
+	if(SOMDestination == nullptr)
+		throw CException(ECHECNONTROUVE, "Erreur la uiDestination n'a pas été trouvée");
+	else {
+		// Verification d'unicite dans le lien / Impossible d'avoir 1 -> 2 et 1 -> 2
+		if(GRATrouverArc(sommet, SOMDestination) != nullptr)
+			throw CException(ECHECDOUBLONARC, "Erreur doublon d'arc");
+
+		// Creation d'un nouvel arc et affectation
+		ARCNewArc = new CArc(uiDestination);
+		sommet->SOMAddArcPartant(ARCNewArc);
+		SOMDestination->SOMAddArcArrivant(ARCNewArc);
+	}
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 }
 
 /*****************************
 Methode : Supprimer Arc
 ******************************
+<<<<<<< HEAD
 Entrée : CArc * arc
+=======
+Entrée : CArc ** ARCarc
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 Necessité : néant
 Sortie : néant
 Entraine : supprime un arc au graphe
 *****************************/
+<<<<<<< HEAD
 void CGraphe::GRASupprimerArc(CArc * arc)
 {
 
@@ -733,6 +838,43 @@ Entraine : récupère un arc du graphe
 CSommet * CGraphe::GRAGetArc(unsigned int uiDestination)
 {
 
+=======
+void CGraphe::GRASupprimerArc(CArc ** ARCarc)
+{
+	unsigned int uiNumSource = 0, uiNumDestination = 0;
+	CSommet * SOMSource = nullptr, * SOMDestination = nullptr;
+	CArc * ARCarc = nullptr;
+
+	if(ARCarc == nullptr && ARCarc[0] == nullptr && ARCarc[1] == nullptr)
+		throw CException(ERREURARGS, "Erreur l'argument n'est pas correcte");
+
+	uiNumSource = ARCarc[0]->ARCGetDestination;
+	uiNumDestination = ARCarc[1]->ARCGetDestination;
+
+
+	// Rercherche et affectation des sommets
+	SOMSource = GRATrouverSommet(uiNumSource);
+	if(SOMSource == nullptr)
+		throw CException(ECHECNONTROUVE, "Erreur sommet non trouvé");
+
+	SOMDestination = GRATrouverSommet(uiNumDestination);
+	if(SOMDestination == nullptr)
+		throw CException(ECHECNONTROUVE, "Erreur sommet non trouvé");
+
+	// Suppression des informations de l'arc dans le sommet source en question
+	ARCarc = GRATrouverArc(SOMSource->SOMGetListArcPartant, SOMDestination);
+	if(ARCarc == nullptr)
+		throw CException(ECHECNONTROUVE, "Erreur arc non trouvé");
+
+	delete[] ARCarc;
+
+	// Suppression des informations de l'arc dans le sommet destination en question
+	ARCarc = GRATrouverArc(SOMDestination->SOMGetListArcPartant, SOMDestination);
+	if(ARCarc == nullptr)
+		throw CException(ECHECNONTROUVE, "Erreur arc non trouvé");
+
+	delete[] ARCarc;
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 }
 
 /*****************************
@@ -751,6 +893,7 @@ void CGraphe::GRAAfficherGraphe()
 /*****************************
 Methode : Trouver Sommet
 ******************************
+<<<<<<< HEAD
 Entrée : néant
 Necessité : néant
 Sortie : liste de sommets trouvés
@@ -759,11 +902,29 @@ Entraine : cherche et renvoi la liste des sommets trouvés
 CSommet * CGraphe::GRATrouverSommet(unsigned int uiSommet)
 {
 
+=======
+Entrée : unsigned int uiSommet
+Necessité : néant
+Sortie : CSommet * 
+Entraine : cherche et renvoi le sommet
+*****************************/
+CSommet * CGraphe::GRATrouverSommet(unsigned int uiSommet)
+{
+	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
+		if(ppqGRASommets[uiBoucleSommet]->SOMGetNum == uiSommet)
+			return ppqGRASommets[uiBoucleSommet];
+
+		uiBoucleSommet++;
+	}
+
+	return nullptr;
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
 }
 
 /*****************************
 Methode : Trouver Arc
 ******************************
+<<<<<<< HEAD
 Entrée : néant
 Necessité : néant
 Sortie : liste d'arcs trouvés
@@ -773,3 +934,41 @@ CArc ** CGraphe::GRATrouverArc(unsigned int uiDestination)
 {
 
 }
+=======
+Entrée : CSommet * SOMSource, CSommet * SOMDestination
+Necessité : néant
+Sortie : CArc **
+Entraine : cherche et renvoi l'arc
+*****************************/
+CArc ** CGraphe::GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination)
+{
+	CArc * ARCArcActuelArrivant = nullptr, * ARCArcActuelPartant = nullptr;
+	CArc ** ARCSourceDestination = nullptr;
+
+	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
+		for(unsigned int uiBoucleArcs = 0 ; uiBoucleArcs < uiGRANbArcs ; uiBoucleArcs++) {
+			
+			ARCArcActuelArrivant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcArrivant[uiBoucleArcs];
+			ARCArcActuelPartant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcPartant[uiBoucleArcs];
+			
+			if(ARCArcActuelArrivant->ARCGetDestination ==  SOMSource->SOMGetNum && ARCArcActuelPartant->ARCGetDestination == SOMDestination->SOMGetNum) {
+				ARCSourceDestination = (CArc **)malloc(sizeof(CArc *) * 2);
+				
+				if(ARCSourceDestination == nullptr)
+					throw CException(ECHECALLOCATION, "Echec de l'allocation");
+
+				ARCSourceDestination[0] = ARCArcActuelArrivant;
+				ARCSourceDestination[1]= ARCArcActuelPartant;
+
+				return ARCSourceDestination;
+			}
+
+			uiBoucleArcs++;
+		}
+
+		uiBoucleSommet++;
+	}
+	
+	return ARCSourceDestination;
+}
+>>>>>>> a20c00fa848d3e97a3e3e38f13d43131a1031984
