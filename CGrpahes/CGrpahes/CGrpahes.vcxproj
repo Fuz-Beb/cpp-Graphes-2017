@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClCompile Include="CArc.cpp" />
     <ClCompile Include="CException.cpp" />
+    <ClCompile Include="CGraphe.cpp" />
     <ClCompile Include="CParse.cpp" />
     <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="main.cpp" />
