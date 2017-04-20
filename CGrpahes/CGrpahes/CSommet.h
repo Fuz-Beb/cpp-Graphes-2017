@@ -47,6 +47,16 @@ public:
 	explicit CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant);
 
 	/*****************************
+	Constructeur de confort
+	******************************
+	Entrée : unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant
+	Necessité : néant
+	Sortie : néant
+	Entraine : l'objet en cours est initialisé
+	*****************************/
+	explicit CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant);
+
+	/*****************************
 	Destructeur par défaut
 	******************************
 	Entrée : néant
@@ -187,5 +197,15 @@ public:
 	Entraine : compte le nombre d'arcs dans la liste et retourne le nombre
 	*****************************/
 	unsigned int SOMCompterArc(CArc ** listArc);
+
+	/*****************************
+	Methode : Vider Sommet
+	******************************
+	Entrée : néant
+	Necessité : néant
+	Sortie : néant
+	Entraine : vide un sommet de ses arcs
+	*****************************/
+	void SOMViderSommet();
 };
 #endif

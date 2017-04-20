@@ -38,7 +38,7 @@ public:
 	Sortie : néant
 	Entraine : l'objet en cours est initialisé
 	*****************************/
-	explicit CArc(unsigned int uiNumSommet);
+	explicit CArc(unsigned int uiNumDestination);
 
 	/*****************************
 	Destructeur par défaut

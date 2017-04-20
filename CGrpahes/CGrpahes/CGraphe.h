@@ -8,7 +8,6 @@ class CGraphe
 private:
 	// Attributs
 	CSommet ** ppqGRASommets;
-	CArc ** ppqGRAArcs;
 	unsigned int uiGRANbSommets;
 	unsigned int uiGRANbArcs;
 
@@ -43,7 +42,7 @@ public:
 	Sortie : néant
 	Entraine : l'objet en cours est initialisé
 	*****************************/
-	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets, CArc ** arcs);
+	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets);
 
 	/*****************************
 	Destructeur par défaut
@@ -110,22 +109,22 @@ public:
 	/*****************************
 	Methode : Supprimer Sommet
 	******************************
-	Entrée : CSommet * sommet
+	Entrée : CSommet & sommet
 	Necessité : néant
 	Sortie : néant
 	Entraine : supprime un sommet au graphe
 	*****************************/
-	void GRASupprimerSommet(CSommet * sommet);
+	void GRASupprimerSommet(CSommet & sommet);
 
 	/*****************************
 	Methode : Modifier Sommet
 	******************************
-	Entrée : unsigned int uiNum
+	Entrée : unsigned int uiNum, CSommet & SOMSommet
 	Necessité : néant
 	Sortie : néant
 	Entraine : modifie un sommet au graphe
 	*****************************/
-	void GRAModifierSommet(unsigned int uiNum);
+	void GRAModifierSommet(unsigned int uiNum, CSommet & SOMSommet);
 
 	/*****************************
 	Methode : Récupérer Sommet
@@ -195,7 +194,7 @@ public:
 	Sortie : liste de sommets trouvés
 	Entraine : cherche et renvoi la liste des sommets trouvés
 	*****************************/
-	CSommet ** GRATrouverSommet(unsigned int uiSommet);
+	CSommet * GRATrouverSommet(unsigned int uiSommet);
 
 	/*****************************
 	Methode : Trouver Arc

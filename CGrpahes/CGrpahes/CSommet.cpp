@@ -60,23 +60,81 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant)
 {
-	if(ppqSOMArcArrivant == nullptr) {
-		// Allocation des arcs arrivant
-		ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
-		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	if(ppqSOMArcArrivant != nullptr) {
+		ppqSOMArcArrivant = nullptr;
+		delete(ppqSOMArcArrivant);
 	}
+	
+	// Allocation des arcs arrivant
+	ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
+	if(ppqSOMArcArrivant == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
 
-	if(ppqSOMArcPartant == nullptr) {
-		// Allocation des arcs arrivant
-		ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
-		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	if(ppqSOMArcPartant != nullptr) {
+		ppqSOMArcPartant = nullptr;
+		delete(ppqSOMArcPartant);
 	}
+	
+	// Allocation des arcs arrivant
+	ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
+	if(ppqSOMArcPartant == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
 
 	// Affectation de la liste des arcs Arrivant et Partant
 	ppqSOMArcArrivant = ppqSommetArcArrivant;
 	ppqSOMArcPartant = ppqSommetArcPartant;
+
+	// Affectation du numéro
+	uiSOMNum = uiNumSommet;
+	SOMCompterArc(ppqSOMArcArrivant);
+	SOMCompterArc(ppqSOMArcPartant);
+}
+
+/*****************************
+Constructeur de confort
+******************************
+Entrée : unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant
+Necessité : néant
+Sortie : néant
+Entraine : l'objet en cours est initialisé
+*****************************/
+CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant)
+{
+	// Debut - Partie Arc Arrivant :
+	if(ppqSOMArcArrivant != nullptr) {
+		ppqSOMArcArrivant = nullptr;
+		delete(ppqSOMArcArrivant);
+	}
+	
+	// Allocation d'un arc arrivant
+	if(ppqSommetArcArrivant != nullptr) {
+		ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
+
+		if(ppqSOMArcArrivant == nullptr)
+			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
+
+	// Fin - Partie Arc Arrivant
+
+	// Debut - Partie Arc Partant :
+	if(ppqSOMArcPartant != nullptr) {
+		ppqSOMArcPartant = nullptr;
+		delete(ppqSOMArcPartant);
+	}
+	
+	// Allocation d'un arc partant
+	if(ppqSommetArcArrivant != nullptr) {
+		ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
+
+		if(ppqSOMArcPartant == nullptr)
+			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
+
+	// Fin - Partie Arc Partant
+
+	// Affectation de la liste des arcs Arrivant et Partant
+	ppqSOMArcArrivant[0] = ppqSommetArcArrivant;
+	ppqSOMArcPartant[0] = ppqSommetArcPartant;
 
 	// Affectation du numéro
 	uiSOMNum = uiNumSommet;
@@ -99,7 +157,7 @@ CSommet::~CSommet()
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
-		delete(ppqSOMArcArrivant[uiBoucle]);
+		delete[] ppqSOMArcArrivant[uiBoucle];
 		uiBoucle++;
 	}
 
@@ -107,14 +165,14 @@ CSommet::~CSommet()
 	// Boucle pour liberer la liste des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
 		ppqSOMArcPartant[uiBoucle] = nullptr;
-		delete(ppqSOMArcPartant[uiBoucle]);
+		delete[] ppqSOMArcPartant[uiBoucle];
 		uiBoucle++;
 	}
 
 	ppqSOMArcArrivant = nullptr;
-	delete(ppqSOMArcArrivant);
+	delete[] ppqSOMArcArrivant;
 	ppqSOMArcPartant = nullptr;
-	delete(ppqSOMArcPartant);
+	delete[] ppqSOMArcPartant;
 }
 
 /*****************************
@@ -337,4 +395,35 @@ unsigned int CSommet::SOMCompterArc(CArc ** listArc)
 	}
 
 	return uiCompteur;
+}
+
+/*****************************
+Methode : Vider Sommet
+******************************
+Entrée : néant
+Necessité : néant
+Sortie : néant
+Entraine : vide un sommet de ses arcs
+*****************************/
+void CSommet::SOMViderSommet()
+{
+	unsigned int uiBoucle = 0;
+
+	// Boucle de suppression des arcs arrivant
+	while(uiBoucle != uiSOMNbrArcArrivant) {
+		ppqSOMArcArrivant[uiBoucle] = nullptr;
+		delete[] ppqSOMArcArrivant[uiBoucle];
+	}
+
+	uiSOMNbrArcArrivant = 0;
+
+	uiBoucle = 0;
+
+	// Boucle de suppression des arcs partant
+	while(uiBoucle != uiSOMNbrArcPartant) {
+		ppqSOMArcPartant[uiBoucle] = nullptr;
+		delete[] ppqSOMArcPartant[uiBoucle];
+	}
+
+	uiSOMNbrArcPartant = 0;
 }
