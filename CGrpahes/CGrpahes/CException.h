@@ -18,6 +18,7 @@
 #define ECHECNONTROUVE 10
 #define ECHECDOUBLONARC 11
 #define ERREURARGS 12
+#define ERREURTEST 13
 
 class CException
 {

@@ -104,7 +104,7 @@ public:
 	Sortie : néant
 	Entraine : ajoute un nouveau sommet au graphe
 	*****************************/
-	void GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * ppqPartant);
+	void GRAAjoutSommet(unsigned int uiSommet, CArc ** ppqArrivant, CArc ** ppqPartant);
 
 	/*****************************
 	Methode : Supprimer Sommet

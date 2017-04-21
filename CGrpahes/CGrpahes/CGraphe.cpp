@@ -155,7 +155,7 @@ Necessité : néant
 Sortie : néant
 Entraine : ajoute un nouveau sommet au graphe
 *****************************/
-void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * ppqPartant)
+void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc ** ppqArrivant, CArc ** ppqPartant)
 {
 	// Unicité avant création d'un sommet
 	CSommet * SOMlistSommets = GRATrouverSommet(uiSommet);
@@ -163,10 +163,10 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 		throw CException(ECHECNEWSOMMET, "Echec il existe deja un sommet avec ce numero");
 
 	// Création d'un nouveau sommet
-	CSommet * SOMnewSommet = new CSommet(uiSommet, ppqArrivant, ppqPartant);
+	CSommet * SOMNewSommet = new CSommet(uiSommet, ppqArrivant, ppqPartant);
 
 	// Vérification de la bonne création
-	if(SOMnewSommet == nullptr)
+	if(SOMNewSommet == nullptr)
 		throw CException(ECHECNEWSOMMET, "Echec de la création d'un nouveau sommet");
 
 	// Vérification d'une présence de liste
@@ -187,7 +187,7 @@ void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * p
 	}
 
 	// Ajout à la liste du graphe le sommet et incrément son nombre
-	ppqGRASommets[uiGRANbSommets] = SOMnewSommet;
+	ppqGRASommets[uiGRANbSommets] = SOMNewSommet;
 	uiGRANbSommets++;
 
 	if(ppqArrivant != nullptr && ppqPartant != nullptr)
@@ -350,7 +350,7 @@ void CGraphe::GRAAfficherGraphe()
 	// Sinon afficher le graphe
 	else {
 		// Parcourir tout les sommets
-		for(unsigned int uiBoucleSommet ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
+		for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
 			// Recuperation du nombre d'arc pour le sommet en question
 			uiNombreArcPartant = 0;
 			if(ppqGRASommets[uiBoucleSommet] == nullptr)
@@ -370,7 +370,7 @@ void CGraphe::GRAAfficherGraphe()
 					throw new CException(ECHECNONTROUVE, "Erreur aucun arc trouvé");
 
 				// Sinon ça rentre dans cette boucle et permet de parcourir les arcs du sommet
-				for(unsigned int uiBoucleArc ; uiBoucleArc < uiNombreArcPartant ; uiBoucleArc++)
+				for(unsigned int uiBoucleArc = 0 ; uiBoucleArc < uiNombreArcPartant ; uiBoucleArc++)
 					cout << "De l'arc n°" << ppqGRASommets[uiBoucleSommet]->SOMGetNum() << " à l'arc n°" << ARCArcPartant[uiBoucleArc]->ARCGetDestination() << " ; ";
 
 				// Affichage d'un saut de ligne pour ameliorer l'affichage
