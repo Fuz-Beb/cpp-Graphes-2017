@@ -1,6 +1,8 @@
 #include "CGraphe.h"
 #include "CException.h"
 
+using namespace std;
+
 /*****************************
 Constructeur par défaut
 ******************************
@@ -344,7 +346,45 @@ Entraine : affichage du graphe dans la console
 *****************************/
 void CGraphe::GRAAfficherGraphe()
 {
+	unsigned int uiNombreArcPartant = 0;
+	CArc ** ARCArcPartant = nullptr;
 
+	// Si le graphe n'a pas de sommet, afficher un message
+	if(uiGRANbSommets == 0)
+		cout << "Le graphe est vide" << endl;
+	// Sinon afficher le graphe
+	else {
+		// Parcourir tout les sommets
+		for(unsigned int uiBoucleSommet ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
+			// Recuperation du nombre d'arc pour le sommet en question
+			uiNombreArcPartant = 0;
+			if(ppqGRASommets[uiBoucleSommet] == nullptr)
+				throw CException(ECHECNONTROUVE, "Erreur le sommet est nul");
+			else
+				uiNombreArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetNbrArcPartant;
+
+			// S'il n'y a pas d'arc alors j'affiche juste le sommet
+			if(uiNombreArcPartant == 0)
+				cout << ppqGRASommets[uiBoucleSommet]->SOMGetNum << endl;
+			else {
+				// Recuperation de la liste des arcs
+				ARCArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcPartant;
+
+				// Impossible d'etre ici s'il n'y a pas d'arc (verification au cas ou erreur ailleur)
+				if(ARCArcPartant == nullptr)
+					throw new CException(ECHECNONTROUVE, "Erreur aucun arc trouvé");
+
+				// Sinon ça rentre dans cette boucle et permet de parcourir les arcs du sommet
+				for(unsigned int uiBoucleArc ; uiBoucleArc < uiNombreArcPartant ; uiBoucleArc++)
+					cout << "De l'arc n°" << ppqGRASommets[uiBoucleSommet]->SOMGetNum << " à l'arc n°" << ARCArcPartant[uiBoucleArc]->ARCGetDestination << " ; ";
+
+				// Affichage d'un saut de ligne pour ameliorer l'affichage
+				cout << endl;
+			}
+		}
+
+
+	}
 }
 
 /*****************************
