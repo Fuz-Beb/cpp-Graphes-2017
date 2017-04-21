@@ -7,15 +7,18 @@
 
 // Utilisé en cas d'exception
 #define ECHECALLOCATION 1
-#define DIMENSIONHORSPORTEE 2
-#define DIMENSIONINEGALE 3
-#define FORMATFICHIERINCORRECTE 4
-#define MAUVAISTYPE 5
-#define ERREURTAILLE 6
-#define DIVISIONPARZERO 7
-#define ECHECOUVERTUREFICHIER 8
-#define ECHECLECTURELIGNEFICHIER 9
-#define ECHECADDARC 10
+#define FORMATFICHIERINCORRECTE 2
+#define MAUVAISTYPE 3
+#define ERREURTAILLE 4
+#define DIVISIONPARZERO 5
+#define ECHECOUVERTUREFICHIER 6
+#define ECHECLECTURELIGNEFICHIER 7
+#define ECHECADDARC 8
+#define ECHECNEWSOMMET 9
+#define ECHECNONTROUVE 10
+#define ECHECDOUBLONARC 11
+#define ERREURARGS 12
+#define ERREURTEST 13
 
 class CException
 {
@@ -55,7 +58,7 @@ public:
 	Sortie : néant
 	Entraine : l'object en cours en initialisé avec les même attributs que l'objet passé en paramètre
 	*****************************/
-	explicit CException(CException & EXCObjet);
+	CException(CException & EXCObjet);
 
 	/*****************************
 	Destructeur par défaut

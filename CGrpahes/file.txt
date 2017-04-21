@@ -1,0 +1,2 @@
+NBSommets=3
+NBArcs=3

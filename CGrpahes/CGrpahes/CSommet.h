@@ -136,7 +136,7 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre à l'attribut
 	*****************************/
-	unsigned int SOMSetListArcArrivant(CArc ** arc);
+	void SOMSetListArcArrivant(CArc ** arc);
 
 	/*****************************
 	Methode : Lire Arc Partant
@@ -156,7 +156,7 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre à l'attribut
 	*****************************/
-	unsigned int SOMSetListArcPartant(CArc ** arc);
+	void SOMSetListArcPartant(CArc ** arc);
 
 	/*****************************
 	Methode : Ajouter Arc Arrivant
@@ -166,7 +166,7 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre arc à la liste des arcs
 	*****************************/
-	unsigned int SOMAddArcArrivant(CArc * arc);
+	void SOMAddArcArrivant(CArc * arc);
 
 	/*****************************
 	Methode : Ajouter Arc Partant
@@ -176,16 +176,26 @@ public:
 	Sortie : néant
 	Entraine : affecte le paramètre arc à la liste des arcs
 	*****************************/
-	unsigned int SOMAddArcPartant(CArc * arc);
+	void  SOMAddArcPartant(CArc * arc);
 
 	/*****************************
 	Methode : Compter le nombre d'arc dans la liste
 	******************************
-	Entrée : CArc ** listArc
+	Entrée : CArc ** ARCListArc
 	Necessité : néant
 	Sortie : uiCompteur
 	Entraine : compte le nombre d'arcs dans la liste et retourne le nombre
 	*****************************/
-	unsigned int SOMCompterArc(CArc ** listArc);
+	unsigned int SOMCompterArc(CArc ** ARCListArc);
+
+	/*****************************
+	Methode : Vider Sommet
+	******************************
+	Entrée : néant
+	Necessité : néant
+	Sortie : néant
+	Entraine : vide un sommet de ses arcs
+	*****************************/
+	void SOMViderSommet();
 };
 #endif

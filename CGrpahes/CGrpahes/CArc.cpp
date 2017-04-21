@@ -34,9 +34,9 @@ Necessité : néant
 Sortie : néant
 Entraine : l'objet en cours est initialisé
 *****************************/
-CArc::CArc(unsigned int uiNumSommet)
+CArc::CArc(unsigned int uiNumDestination)
 {
-	uiARCDestination = uiNumSommet;
+	uiARCDestination = uiNumDestination;
 }
 
 /*****************************

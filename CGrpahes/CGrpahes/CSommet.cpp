@@ -60,19 +60,25 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant)
 {
-	if(ppqSOMArcArrivant == nullptr) {
-		// Allocation des arcs arrivant
-		ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
-		if(ppqSOMArcArrivant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	if(ppqSOMArcArrivant != nullptr) {
+		ppqSOMArcArrivant = nullptr;
+		delete(ppqSOMArcArrivant);
 	}
+	
+	// Allocation des arcs arrivant
+	ppqSOMArcArrivant = (CArc **)malloc(sizeof(ppqSommetArcArrivant));
+	if(ppqSOMArcArrivant == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
 
-	if(ppqSOMArcPartant == nullptr) {
-		// Allocation des arcs arrivant
-		ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
-		if(ppqSOMArcPartant == nullptr)
-			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	if(ppqSOMArcPartant != nullptr) {
+		ppqSOMArcPartant = nullptr;
+		delete(ppqSOMArcPartant);
 	}
+	
+	// Allocation des arcs arrivant
+	ppqSOMArcPartant = (CArc **)malloc(sizeof(ppqSommetArcPartant));
+	if(ppqSOMArcPartant == nullptr)
+		throw new CException(ECHECALLOCATION, "Echec de l'allocation");
 
 	// Affectation de la liste des arcs Arrivant et Partant
 	ppqSOMArcArrivant = ppqSommetArcArrivant;
@@ -80,8 +86,8 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc **
 
 	// Affectation du numéro
 	uiSOMNum = uiNumSommet;
-	SOMCompterArc(ppqSOMArcArrivant);
-	SOMCompterArc(ppqSOMArcPartant);
+	uiSOMNbrArcArrivant = SOMCompterArc(ppqSOMArcArrivant);
+	uiSOMNbrArcPartant = SOMCompterArc(ppqSOMArcPartant);
 }
 
 /*****************************
@@ -99,7 +105,7 @@ CSommet::~CSommet()
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
-		delete(ppqSOMArcArrivant[uiBoucle]);
+		delete[] ppqSOMArcArrivant[uiBoucle];
 		uiBoucle++;
 	}
 
@@ -107,14 +113,14 @@ CSommet::~CSommet()
 	// Boucle pour liberer la liste des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
 		ppqSOMArcPartant[uiBoucle] = nullptr;
-		delete(ppqSOMArcPartant[uiBoucle]);
+		delete[] ppqSOMArcPartant[uiBoucle];
 		uiBoucle++;
 	}
 
 	ppqSOMArcArrivant = nullptr;
-	delete(ppqSOMArcArrivant);
+	delete[] ppqSOMArcArrivant;
 	ppqSOMArcPartant = nullptr;
-	delete(ppqSOMArcPartant);
+	delete[] ppqSOMArcPartant;
 }
 
 /*****************************
@@ -216,7 +222,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre à l'attribut
 *****************************/
-unsigned int CSommet::SOMSetListArcArrivant(CArc ** arc)
+void CSommet::SOMSetListArcArrivant(CArc ** arc)
 {
 	ppqSOMArcArrivant = arc;
 	SOMCompterArc(ppqSOMArcArrivant);
@@ -243,7 +249,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre à l'attribut
 *****************************/
-unsigned int CSommet::SOMSetListArcPartant(CArc ** arc)
+void CSommet::SOMSetListArcPartant(CArc ** arc)
 {
 	ppqSOMArcPartant = arc;
 	SOMCompterArc(ppqSOMArcPartant);
@@ -257,7 +263,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
-unsigned int CSommet::SOMAddArcArrivant(CArc * arc)
+void CSommet::SOMAddArcArrivant(CArc * arc)
 {	
 	// Allocation pour la première fois
 	if(ppqSOMArcArrivant == nullptr) {
@@ -291,7 +297,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
-unsigned int CSommet::SOMAddArcPartant(CArc * arc)
+void CSommet::SOMAddArcPartant(CArc * arc)
 {	
 	// Allocation pour la première fois
 	if(ppqSOMArcPartant == nullptr) {
@@ -320,21 +326,55 @@ unsigned int CSommet::SOMAddArcPartant(CArc * arc)
 /*****************************
 Methode : Compter le nombre d'arc dans la liste
 ******************************
-Entrée : CArc ** listArc
+Entrée : CArc ** ARCListArc
 Necessité : néant
 Sortie : uiCompteur
 Entraine : compte le nombre d'arcs dans la liste et retourne le nombre
 *****************************/
-unsigned int CSommet::SOMCompterArc(CArc ** listArc) 
+unsigned int CSommet::SOMCompterArc(CArc ** ARCListArc) 
 {
 	unsigned int uiCompteur = 0;
 
-	if(listArc[0] != nullptr)
+	if(ARCListArc == nullptr)
+		return 0;
+
+	if(ARCListArc[0] != nullptr)
 		uiCompteur = 1;
 
-	while(listArc[uiCompteur + 1] != nullptr) {
+	while(ARCListArc[uiCompteur + 1] != nullptr) {
 		uiCompteur++;
 	}
 
 	return uiCompteur;
+}
+
+/*****************************
+Methode : Vider Sommet
+******************************
+Entrée : néant
+Necessité : néant
+Sortie : néant
+Entraine : vide un sommet de ses arcs
+*****************************/
+void CSommet::SOMViderSommet()
+{
+	unsigned int uiBoucle = 0;
+
+	// Boucle de suppression des arcs arrivant
+	while(uiBoucle != uiSOMNbrArcArrivant) {
+		ppqSOMArcArrivant[uiBoucle] = nullptr;
+		delete[] ppqSOMArcArrivant[uiBoucle];
+	}
+
+	uiSOMNbrArcArrivant = 0;
+
+	uiBoucle = 0;
+
+	// Boucle de suppression des arcs partant
+	while(uiBoucle != uiSOMNbrArcPartant) {
+		ppqSOMArcPartant[uiBoucle] = nullptr;
+		delete[] ppqSOMArcPartant[uiBoucle];
+	}
+
+	uiSOMNbrArcPartant = 0;
 }
