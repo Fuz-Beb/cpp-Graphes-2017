@@ -242,8 +242,8 @@ void CGraphe::GRAModifierSommet(unsigned int uiNum, CSommet * SOMSommet)
 	unsigned int uiBoucle = 0;
 
 	// Permet d'actualiser le nouveau numéro du sommet aux arcs précédant
-	while(uiBoucle != SOMSommet->SOMGetNbrArcArrivant) {
-		SOMSommet->SOMGetListArcArrivant[uiBoucle]->ARCSetDestination(uiNum);
+	while(uiBoucle != SOMSommet->SOMGetNbrArcArrivant()) {
+		SOMSommet->SOMGetListArcArrivant()[uiBoucle]->ARCSetDestination(uiNum);
 		uiBoucle++;
 	}
 	// Permet de changer le numéro du sommet
@@ -281,7 +281,7 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 		throw CException(ECHECNONTROUVE, "Erreur la uiDestination n'a pas été trouvée");
 	else {
 		// Verification d'unicite dans le lien / Impossible d'avoir 1 -> 2 et 1 -> 2
-		if(GRATrouverArc(SOMSommet, SOMDestination) != nullptr)
+		if(GRATrouverArc(SOMSommet, SOMDestination->SOMGetNum()) != nullptr)
 			throw CException(ECHECDOUBLONARC, "Erreur doublon d'arc");
 
 		// Creation d'un nouvel arc et affectation
@@ -294,46 +294,41 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 /*****************************
 Methode : Supprimer Arc
 ******************************
-Entrée : CArc ** ARCarc
+Entrée : CArc * ARCArc, CSommet * SOMSommet
 Necessité : néant
 Sortie : néant
 Entraine : supprime un arc au graphe
 *****************************/
-void CGraphe::GRASupprimerArc(CArc ** ARCarc)
+void CGraphe::GRASupprimerArc(CArc * ARCArc, CSommet * SOMSommet)
 {
-	unsigned int uiNumSource = 0, uiNumDestination = 0;
-	CSommet * SOMSource = nullptr, * SOMDestination = nullptr;
-	CArc * ARCarc = nullptr;
+	CSommet * SOMDestination = nullptr;
+	CArc * ARCArcASupprimer = nullptr;
 
-	if(ARCarc == nullptr && ARCarc[0] == nullptr && ARCarc[1] == nullptr)
+	if(ARCArc == nullptr || SOMSommet == nullptr)
 		throw CException(ERREURARGS, "Erreur l'argument n'est pas correcte");
 
-	uiNumSource = ARCarc[0]->ARCGetDestination;
-	uiNumDestination = ARCarc[1]->ARCGetDestination;
-
-
-	// Rercherche et affectation des sommets
-	SOMSource = GRATrouverSommet(uiNumSource);
-	if(SOMSource == nullptr)
-		throw CException(ECHECNONTROUVE, "Erreur sommet non trouvé");
-
-	SOMDestination = GRATrouverSommet(uiNumDestination);
+	// Affectation du sommet de destination (de l'arc)
+	SOMDestination = GRATrouverSommet(ARCArc->ARCGetDestination());
 	if(SOMDestination == nullptr)
 		throw CException(ECHECNONTROUVE, "Erreur sommet non trouvé");
 
-	// Suppression des informations de l'arc dans le sommet source en question
-	ARCarc = GRATrouverArc(SOMSource->SOMGetListArcPartant, SOMDestination);
-	if(ARCarc == nullptr)
+	// SUPPRESSION SOMMET SOURCE :
+	ARCArcASupprimer = GRATrouverArc(SOMSommet, ARCArc->ARCGetDestination());
+	if(ARCArcASupprimer == nullptr)
 		throw CException(ECHECNONTROUVE, "Erreur arc non trouvé");
 
-	delete[] ARCarc;
+	 // Supprimer de la liste du sommet source
+	ARCArcASupprimer = nullptr;
+	delete[] ARCArcASupprimer;
 
-	// Suppression des informations de l'arc dans le sommet destination en question
-	ARCarc = GRATrouverArc(SOMDestination->SOMGetListArcPartant, SOMDestination);
-	if(ARCarc == nullptr)
+	// SUPPRESSION SOMMET DESTINATION :
+	ARCArcASupprimer = GRATrouverArc(SOMDestination, ARCArc->ARCGetDestination());
+	if(ARCArcASupprimer == nullptr)
 		throw CException(ECHECNONTROUVE, "Erreur arc non trouvé");
 
-	delete[] ARCarc;
+	 // Supprimer de la liste du sommet destination
+	ARCArcASupprimer = nullptr;
+	delete[] ARCArcASupprimer;
 }
 
 /*****************************
@@ -361,14 +356,14 @@ void CGraphe::GRAAfficherGraphe()
 			if(ppqGRASommets[uiBoucleSommet] == nullptr)
 				throw CException(ECHECNONTROUVE, "Erreur le sommet est nul");
 			else
-				uiNombreArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetNbrArcPartant;
+				uiNombreArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetNbrArcPartant();
 
 			// S'il n'y a pas d'arc alors j'affiche juste le sommet
 			if(uiNombreArcPartant == 0)
-				cout << ppqGRASommets[uiBoucleSommet]->SOMGetNum << endl;
+				cout << ppqGRASommets[uiBoucleSommet]->SOMGetNum() << endl;
 			else {
 				// Recuperation de la liste des arcs
-				ARCArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcPartant;
+				ARCArcPartant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcPartant();
 
 				// Impossible d'etre ici s'il n'y a pas d'arc (verification au cas ou erreur ailleur)
 				if(ARCArcPartant == nullptr)
@@ -376,7 +371,7 @@ void CGraphe::GRAAfficherGraphe()
 
 				// Sinon ça rentre dans cette boucle et permet de parcourir les arcs du sommet
 				for(unsigned int uiBoucleArc ; uiBoucleArc < uiNombreArcPartant ; uiBoucleArc++)
-					cout << "De l'arc n°" << ppqGRASommets[uiBoucleSommet]->SOMGetNum << " à l'arc n°" << ARCArcPartant[uiBoucleArc]->ARCGetDestination << " ; ";
+					cout << "De l'arc n°" << ppqGRASommets[uiBoucleSommet]->SOMGetNum() << " à l'arc n°" << ARCArcPartant[uiBoucleArc]->ARCGetDestination() << " ; ";
 
 				// Affichage d'un saut de ligne pour ameliorer l'affichage
 				cout << endl;
@@ -398,7 +393,7 @@ Entraine : cherche et renvoi le sommet
 CSommet * CGraphe::GRATrouverSommet(unsigned int uiSommet)
 {
 	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
-		if(ppqGRASommets[uiBoucleSommet]->SOMGetNum == uiSommet)
+		if(ppqGRASommets[uiBoucleSommet]->SOMGetNum() == uiSommet)
 			return ppqGRASommets[uiBoucleSommet];
 
 		uiBoucleSommet++;
@@ -410,33 +405,22 @@ CSommet * CGraphe::GRATrouverSommet(unsigned int uiSommet)
 /*****************************
 Methode : Trouver Arc
 ******************************
-Entrée : CSommet * SOMSource, CSommet * SOMDestination
+Entrée : CSommet * SOMSommetSource, unsigned int uiDestination
 Necessité : néant
-Sortie : CArc **
+Sortie : CArc *
 Entraine : cherche et renvoi l'arc
 *****************************/
-CArc ** CGraphe::GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination)
+CArc * CGraphe::GRATrouverArc(CSommet * SOMSommetSource, unsigned int uiDestination)
 {
-	CArc * ARCArcActuelArrivant = nullptr, * ARCArcActuelPartant = nullptr;
-	CArc ** ARCSourceDestination = nullptr;
+	CArc * ARCArc = nullptr;
 
 	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
 		for(unsigned int uiBoucleArcs = 0 ; uiBoucleArcs < uiGRANbArcs ; uiBoucleArcs++) {
 			
-			ARCArcActuelArrivant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcArrivant[uiBoucleArcs];
-			ARCArcActuelPartant = ppqGRASommets[uiBoucleSommet]->SOMGetListArcPartant[uiBoucleArcs];
-			
-			if(ARCArcActuelArrivant->ARCGetDestination ==  SOMSource->SOMGetNum && ARCArcActuelPartant->ARCGetDestination == SOMDestination->SOMGetNum) {
-				ARCSourceDestination = (CArc **)malloc(sizeof(CArc *) * 2);
-				
-				if(ARCSourceDestination == nullptr)
-					throw CException(ECHECALLOCATION, "Echec de l'allocation");
+			ARCArc = SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs];
 
-				ARCSourceDestination[0] = ARCArcActuelArrivant;
-				ARCSourceDestination[1]= ARCArcActuelPartant;
-
-				return ARCSourceDestination;
-			}
+			if(ARCArc->CArc::ARCGetDestination() ==  uiDestination)
+				return ARCArc;
 
 			uiBoucleArcs++;
 		}
@@ -444,5 +428,5 @@ CArc ** CGraphe::GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination)
 		uiBoucleSommet++;
 	}
 	
-	return ARCSourceDestination;
+	return ARCArc;
 }

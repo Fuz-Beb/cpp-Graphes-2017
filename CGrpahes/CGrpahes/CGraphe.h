@@ -149,12 +149,12 @@ public:
 	/*****************************
 	Methode : Supprimer Arc
 	******************************
-	Entrée : CArc ** ARCarc
+	Entrée : CArc * ARCArc, CSommet * SOMSommet
 	Necessité : néant
 	Sortie : néant
 	Entraine : supprime un arc au graphe
 	*****************************/
-	void GRASupprimerArc(CArc ** ARCarc);
+	void GRASupprimerArc(CArc * ARCarc, CSommet * SOMSommet);
 
 	/*****************************
 	Methode : Afficher Arc
@@ -179,11 +179,11 @@ public:
 	/*****************************
 	Methode : Trouver Arc
 	******************************
-	Entrée : CSommet * SOMSource, CSommet * SOMDestination
+	Entrée : CSommet * SOMSommetSource, unsigned int uiDestination
 	Necessité : néant
-	Sortie : CArc **
+	Sortie : CArc *
 	Entraine : cherche et renvoi l'arc
 	*****************************/
-	CArc ** GRATrouverArc(CSommet * SOMSource, CSommet * SOMDestination);
-}
+	CArc * GRATrouverArc(CSommet * SOMDestination, unsigned int uiDestination);
+};
 #endif

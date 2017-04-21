@@ -274,7 +274,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre à l'attribut
 *****************************/
-unsigned int CSommet::SOMSetListArcArrivant(CArc ** arc)
+void CSommet::SOMSetListArcArrivant(CArc ** arc)
 {
 	ppqSOMArcArrivant = arc;
 	SOMCompterArc(ppqSOMArcArrivant);
@@ -301,7 +301,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre à l'attribut
 *****************************/
-unsigned int CSommet::SOMSetListArcPartant(CArc ** arc)
+void CSommet::SOMSetListArcPartant(CArc ** arc)
 {
 	ppqSOMArcPartant = arc;
 	SOMCompterArc(ppqSOMArcPartant);
@@ -315,7 +315,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
-unsigned int CSommet::SOMAddArcArrivant(CArc * arc)
+void CSommet::SOMAddArcArrivant(CArc * arc)
 {	
 	// Allocation pour la première fois
 	if(ppqSOMArcArrivant == nullptr) {
@@ -349,7 +349,7 @@ Necessité : néant
 Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
-unsigned int CSommet::SOMAddArcPartant(CArc * arc)
+void CSommet::SOMAddArcPartant(CArc * arc)
 {	
 	// Allocation pour la première fois
 	if(ppqSOMArcPartant == nullptr) {
