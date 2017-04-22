@@ -4,7 +4,7 @@
 
 #include <vld.h>
 void main() {
-
+	try {
 	// TEST 1 - Constructeur par défaut
 		// Configuration
 			// Creation d'un graphe vide
@@ -44,7 +44,10 @@ void main() {
 	if(GRANewGraphe2->GRAGetNbSommets() != 3)
 		throw CException(ERREURTEST, "Erreur du test, il n'y a pas 3 sommets");
 			// Ajouter des arcs
+				// 1 vers 3
 	GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
+	//GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
+	// ICI !!!!! FUITE SI JE LEVE L EXCEPTION !!!!!!!
 
 			// Affichage du graphe
 	cout << "Test du graphe 2 -> Non vide : " << endl;
@@ -53,4 +56,8 @@ void main() {
 		// Liberation memoire du graphe
 	delete(GRANewGraphe2);
 
+	}
+	catch (CException e) {
+		cout << e.EXCLectureMessage() << endl;
+	}
 }

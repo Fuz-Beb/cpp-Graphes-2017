@@ -108,7 +108,7 @@ CSommet::~CSommet()
 
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
-		delete[] ppqSOMArcArrivant[uiBoucle];
+		free(ppqSOMArcArrivant[uiBoucle]);
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
@@ -116,7 +116,7 @@ CSommet::~CSommet()
 	uiBoucle = 0;
 	// Boucle pour liberer la liste des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
-		delete[] ppqSOMArcPartant[uiBoucle];
+		free(ppqSOMArcPartant[uiBoucle]);
 		ppqSOMArcPartant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
@@ -273,23 +273,34 @@ void CSommet::SOMAddArcArrivant(CArc * arc)
 	if(ppqSOMArcArrivant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcArrivant = (CArc **)malloc(sizeof(CArc *));
-		if(ppqSOMArcArrivant == nullptr)
+		if(ppqSOMArcArrivant == nullptr) {
+			delete(arc);
+			arc = nullptr;
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		}
 		ppqSOMArcArrivant[0] = arc;
 	}
 	// Sinon reallocation
 	else {
 		// Reallocation des arcs arrivant
 		(CArc **)realloc(ppqSOMArcArrivant, sizeof(ppqSOMArcArrivant) + sizeof(CArc *));
-		if(ppqSOMArcArrivant == nullptr)
+		if(ppqSOMArcArrivant == nullptr) {
+			delete(arc);
+			arc = nullptr;
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		}
 
 		ppqSOMArcArrivant[uiSOMNbrArcArrivant] = arc;
 
 		if(ppqSOMArcArrivant[uiSOMNbrArcArrivant] != nullptr)
 			uiSOMNbrArcArrivant++;
-		else
+		else {
+			delete(arc);
+			arc = nullptr;
+			delete[] ppqSOMArcArrivant;
+			ppqSOMArcArrivant = nullptr;
 			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
+		}
 	}
 }
 
@@ -307,23 +318,34 @@ void CSommet::SOMAddArcPartant(CArc * arc)
 	if(ppqSOMArcPartant == nullptr) {
 		// Allocation des arcs arrivant
 		ppqSOMArcPartant = (CArc **)malloc(sizeof(CArc *));
-		if(ppqSOMArcPartant == nullptr)
+		if(ppqSOMArcPartant == nullptr) {
+			delete(arc);
+			arc = nullptr;
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		}
 		ppqSOMArcPartant[0] = arc;
 	}
 	// Sinon reallocation
 	else {
 		// Reallocation des arcs arrivant
 		(CArc **)realloc(ppqSOMArcPartant, sizeof(ppqSOMArcPartant) + sizeof(CArc *));
-		if(ppqSOMArcPartant == nullptr)
+		if(ppqSOMArcPartant == nullptr) {
+			delete(arc);
+			arc = nullptr;
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		}
 
 		ppqSOMArcPartant[uiSOMNbrArcPartant] = arc;
 
 		if(ppqSOMArcPartant[uiSOMNbrArcPartant] != nullptr)
 			uiSOMNbrArcArrivant++;
-		else
+		else {
+			delete(arc);
+			arc = nullptr;
+			delete[] ppqSOMArcPartant;
+			ppqSOMArcPartant = nullptr;
 			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
+		}
 	}
 }
 
@@ -366,8 +388,9 @@ void CSommet::SOMViderSommet()
 
 	// Boucle de suppression des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
+		delete(ppqSOMArcArrivant[uiBoucle]);
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
-		delete[] ppqSOMArcArrivant[uiBoucle];
+		uiBoucle++;
 	}
 
 	uiSOMNbrArcArrivant = 0;
@@ -376,8 +399,9 @@ void CSommet::SOMViderSommet()
 
 	// Boucle de suppression des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
+		delete(ppqSOMArcPartant[uiBoucle]);
 		ppqSOMArcPartant[uiBoucle] = nullptr;
-		delete[] ppqSOMArcPartant[uiBoucle];
+		uiBoucle++;
 	}
 
 	uiSOMNbrArcPartant = 0;

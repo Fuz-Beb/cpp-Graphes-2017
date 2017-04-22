@@ -277,25 +277,44 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 {
 
 	CSommet * SOMDestination = GRATrouverSommet(uiDestination);
-	CArc * ARCNewArc = nullptr;
+	CArc * ARCNewArc = nullptr, * ARCTrouverArc = nullptr;
 
-	if(SOMDestination == nullptr)
+	if(SOMDestination == nullptr) {
+		delete(SOMSommet);
+		SOMSommet = nullptr;
 		throw CException(ECHECNONTROUVE, "Erreur la uiDestination n'a pas été trouvée");
+	}
 	else {
 		// Verification d'unicite dans le lien / Impossible d'avoir 1 -> 2 et 1 -> 2
-		if(GRATrouverArc(SOMSommet, SOMDestination->SOMGetNum()) != nullptr)
+		ARCTrouverArc = GRATrouverArc(SOMSommet, SOMDestination->SOMGetNum());
+
+		if(ARCTrouverArc != nullptr) {
+			delete(SOMSommet);
+			SOMSommet = nullptr;
+			free(SOMDestination);
+			SOMDestination= nullptr;
+			free(ARCTrouverArc);
+			//ARCTrouverArc = nullptr;
+
 			throw CException(ECHECDOUBLONARC, "Erreur doublon d'arc");
+		}
 
 		// Creation d'un nouvel arc et affectation
 		ARCNewArc = new CArc(uiDestination);
 
-		if(ARCNewArc == nullptr)
+		if(ARCNewArc == nullptr) {
+			delete(SOMSommet);
+			SOMSommet = nullptr;
 			throw CException(ECHECADDARC, "Erreur le nouvel arc n'a pas été créé");
+		}
 
 		SOMSommet->SOMAddArcPartant(ARCNewArc);
 		SOMDestination->SOMAddArcArrivant(ARCNewArc);
+
+		// Incrementation des compteurs d'arcs
+		uiGRANbArcs++;
 		SOMSommet->SOMSetNbrArcPartant(SOMSommet->SOMGetNbrArcPartant() + 1);
-		SOMSommet->SOMSetNbrArcPartant(SOMSommet->SOMGetNbrArcArrivant() + 1);
+		SOMDestination->SOMSetNbrArcArrivant(SOMSommet->SOMGetNbrArcArrivant() + 1);
 	}
 }
 
