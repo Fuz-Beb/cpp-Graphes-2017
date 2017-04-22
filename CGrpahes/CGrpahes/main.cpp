@@ -18,10 +18,11 @@ void main() {
 	cout << "Test du graphe 1 -> Vide : " << endl;
 	GRANewGraphe1->GRAAfficherGraphe();
 
-			// Libération mémoire du graphe
+			// Libération memoire du graphe
 	delete(GRANewGraphe1);
 
 	// TEST 2 - Constructeur de confort
+	/*
 		// Création d'un arc de sommet 1 vers 2
 	CArc * ARCSommet1Vers2 = new CArc(2);
 		// Création d'un arc de sommet 1 vers 3
@@ -30,6 +31,7 @@ void main() {
 	CArc * ARCSommet3Vers1 = new CArc(1);
 		// Création d'un arc de sommet 3 vers 2
 	CArc * ARCSommet3Vers2 = new CArc(2);
+	*/
 	
 
 		// Création du graphe
@@ -41,7 +43,14 @@ void main() {
 		// Vérification du compteur général du nombre de sommet dans le graphe
 	if(GRANewGraphe2->GRAGetNbSommets() != 3)
 		throw CException(ERREURTEST, "Erreur du test, il n'y a pas 3 sommets");
+			// Ajouter des arcs
+	GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
 
+			// Affichage du graphe
+	cout << "Test du graphe 2 -> Non vide : " << endl;
+	GRANewGraphe2->GRAAfficherGraphe();
 
+		// Liberation memoire du graphe
+	delete(GRANewGraphe2);
 
 }
