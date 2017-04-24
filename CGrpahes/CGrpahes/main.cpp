@@ -22,17 +22,6 @@ void main() {
 	delete(GRANewGraphe1);
 
 	// TEST 2 - Constructeur de confort
-	/*
-		// Création d'un arc de sommet 1 vers 2
-	CArc * ARCSommet1Vers2 = new CArc(2);
-		// Création d'un arc de sommet 1 vers 3
-	CArc * ARCSommet1Vers3 = new CArc(3);
-		// Création d'un arc de sommet 3 vers 1
-	CArc * ARCSommet3Vers1 = new CArc(1);
-		// Création d'un arc de sommet 3 vers 2
-	CArc * ARCSommet3Vers2 = new CArc(2);
-	*/
-	
 		// Création du graphe
 	CGraphe * GRANewGraphe2 = new CGraphe();
 		// Affectation des 3 sommets au graphe
@@ -53,10 +42,12 @@ void main() {
 	GRANewGraphe2->GRAAfficherGraphe();
 
 		// Liberation memoire du graphe
-	delete(GRANewGraphe2);
+	//delete(GRANewGraphe2);
 
 	}
 	catch (CException e) {
 		cout << e.EXCLectureMessage() << endl;
 	}
+
+	cout << "test";
 }

@@ -298,7 +298,7 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 {
 
 	CSommet * SOMDestination = GRATrouverSommet(uiDestination);
-	CArc * ARCNewArc = nullptr, * ARCTrouverArc = nullptr;
+	CArc * ARCArcPartant = nullptr, * ARCArcArrivant = nullptr, * ARCTrouverArc = nullptr;
 
 	if(SOMDestination == nullptr) {
 		delete(SOMSommet);
@@ -321,16 +321,18 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 		}
 
 		// Creation d'un nouvel arc et affectation
-		ARCNewArc = new CArc(uiDestination);
+		ARCArcPartant = new CArc(uiDestination);
 
-		if(ARCNewArc == nullptr) {
+		if(ARCArcPartant == nullptr) {
 			delete(SOMSommet);
 			SOMSommet = nullptr;
 			throw CException(ECHECADDARC, "Erreur le nouvel arc n'a pas été créé");
 		}
 
-		SOMSommet->SOMAddArcPartant(ARCNewArc);
-		SOMDestination->SOMAddArcArrivant(ARCNewArc);
+		SOMSommet->SOMAddArcPartant(ARCArcPartant);
+
+		ARCArcArrivant = new CArc(*ARCArcPartant);
+		SOMDestination->SOMAddArcArrivant(ARCArcArrivant);
 
 		// Incrementation des compteurs d'arcs
 		uiGRANbArcs++;
