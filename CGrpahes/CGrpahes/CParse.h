@@ -1,6 +1,5 @@
 #ifndef C_PARSE_H
 #define C_PARSE_H
-#define _CRT_SECURE_NO_WARNINGS
 
 #include <fstream>
 
@@ -139,5 +138,15 @@ public:
 	Entraine : Conversion d'un char en char minuscule
 	*****************************/
 	char PARConvertirCharMinusc(char cParam);
+
+	/*****************************
+	Methode : Rechercher un caractère dans une chaine
+	******************************
+	Entrée : char sCaractere, char * psChaine
+	Necessité : Méthode Ouvrir fichier
+	Sortie : int
+	Entraine : retourne la position du caractere
+	*****************************/
+	int PARRechercheCaractere(char sCaractere, char * psChaine);
 };
 #endif

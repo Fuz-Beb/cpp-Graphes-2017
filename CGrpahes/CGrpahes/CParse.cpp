@@ -262,3 +262,24 @@ char CParse::PARConvertirCharMinusc(char cParam)
     else
         return cParam;
 }
+
+/*****************************
+Methode : Rechercher un caractère dans une chaine
+******************************
+Entrée : char sCaractere, char * psChaine
+Necessité : Méthode Ouvrir fichier
+Sortie : int
+Entraine : retourne la position du caractere
+*****************************/
+int CParse::PARRechercheCaractere(char sCaractere, char * psChaine)
+{
+	unsigned int uiBoucle = 0;
+
+	while (uiBoucle < strlen(psChaine))
+	{
+		if (psChaine[uiBoucle] == sCaractere)
+			return uiBoucle;
+		uiBoucle++;
+	}
+	return -1;
+}
