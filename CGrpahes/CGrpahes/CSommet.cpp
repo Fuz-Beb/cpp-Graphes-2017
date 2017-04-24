@@ -61,8 +61,8 @@ Entraine : l'objet en cours est initialisé
 CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant)
 {
 	if(ppqSOMArcArrivant != nullptr) {
-		ppqSOMArcArrivant = nullptr;
 		delete(ppqSOMArcArrivant);
+		ppqSOMArcArrivant = nullptr;
 	}
 	
 	// Allocation des arcs arrivant
@@ -73,8 +73,8 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc **
 	}
 
 	if(ppqSOMArcPartant != nullptr) {
+		free(ppqSOMArcPartant);
 		ppqSOMArcPartant = nullptr;
-		delete(ppqSOMArcPartant);
 	}
 	
 	// Allocation des arcs arrivant

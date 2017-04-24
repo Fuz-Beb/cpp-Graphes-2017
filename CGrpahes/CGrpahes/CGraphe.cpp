@@ -80,10 +80,22 @@ Entraine : l'objet est détruit
 *****************************/
 CGraphe::~CGraphe()
 {
-	unsigned int uiBoucle = 0;
+	for (unsigned int uiBoucle = 0 ; uiBoucle < uiGRANbSommets ; uiBoucle++) {
+		if(ppqGRASommets[uiBoucle] != nullptr)
+			delete ppqGRASommets[uiBoucle];
+	}
+
+	if(ppqGRASommets != nullptr)
+		free(ppqGRASommets);
+
+
+	/*unsigned int uiBoucle = 0;
+	
+	if(ppqGRASommets != nullptr && ppqGRASommets[uiBoucle] != nullptr)
+		uiGRANbSommets = 0;
 
 	// Boucle pour liberer la liste des sommets
-	while(uiBoucle != uiGRANbSommets) {
+	while(ppqGRASommets != nullptr && ppqGRASommets[uiBoucle + 1] != nullptr) {
 		ppqGRASommets[uiBoucle]->SOMViderSommet();
 		delete(ppqGRASommets[uiBoucle]);
 		ppqGRASommets[uiBoucle] = nullptr;
@@ -91,8 +103,18 @@ CGraphe::~CGraphe()
 		uiBoucle++;
 	}
 
+	if(uiGRANbSommets != 0) {
+		ppqGRASommets[uiBoucle]->SOMViderSommet();
+		delete(ppqGRASommets[uiBoucle]);
+		ppqGRASommets[uiBoucle] = nullptr;
+		delete[] ppqGRASommets[uiBoucle];
+	}
+
+	uiGRANbSommets = 0;
+
 	delete[] ppqGRASommets;
 	ppqGRASommets = nullptr;
+	*/
 
 }
 

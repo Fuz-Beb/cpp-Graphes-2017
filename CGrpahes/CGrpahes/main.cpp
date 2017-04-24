@@ -33,7 +33,6 @@ void main() {
 	CArc * ARCSommet3Vers2 = new CArc(2);
 	*/
 	
-
 		// Création du graphe
 	CGraphe * GRANewGraphe2 = new CGraphe();
 		// Affectation des 3 sommets au graphe
