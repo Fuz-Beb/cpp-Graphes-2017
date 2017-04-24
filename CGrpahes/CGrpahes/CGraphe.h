@@ -37,12 +37,12 @@ public:
 	/*****************************
 	Constructeur de confort
 	******************************
-	Entrée : unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets
+	Entrée : unsigned int uiNbSommets, unsigned int uiNbArcs
 	Necessité : néant
 	Sortie : néant
 	Entraine : l'objet en cours est initialisé
 	*****************************/
-	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets);
+	explicit CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs);
 
 	/*****************************
 	Destructeur par défaut
@@ -104,7 +104,7 @@ public:
 	Sortie : néant
 	Entraine : ajoute un nouveau sommet au graphe
 	*****************************/
-	void GRAAjoutSommet(unsigned int uiSommet, CArc ** ppqArrivant, CArc ** ppqPartant);
+	void GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * ppqPartant);
 
 	/*****************************
 	Methode : Supprimer Sommet

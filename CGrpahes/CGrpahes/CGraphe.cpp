@@ -47,12 +47,12 @@ CGraphe::CGraphe(CGraphe & graphe)
 /*****************************
 Constructeur de confort
 ******************************
-Entrée : unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets
+Entrée : unsigned int uiNbSommets, unsigned int uiNbArcs
 Necessité : néant
 Sortie : néant
 Entraine : l'objet en cours est initialisé
 *****************************/
-CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** sommets)
+CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs)
 {
 	if(ppqGRASommets != nullptr) {
 		ppqGRASommets = nullptr;
@@ -65,7 +65,6 @@ CGraphe::CGraphe(unsigned int uiNbSommets, unsigned int uiNbArcs, CSommet ** som
 	if(ppqGRASommets == nullptr)
 		throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
-	ppqGRASommets = sommets;
 	uiGRANbSommets = uiNbSommets;
 	uiGRANbArcs = uiNbArcs;
 }
@@ -180,7 +179,7 @@ Necessité : néant
 Sortie : néant
 Entraine : ajoute un nouveau sommet au graphe
 *****************************/
-void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc ** ppqArrivant, CArc ** ppqPartant)
+void CGraphe::GRAAjoutSommet(unsigned int uiSommet, CArc * ppqArrivant, CArc * ppqPartant)
 {
 	// Unicité avant création d'un sommet
 	CSommet * SOMlistSommets = GRATrouverSommet(uiSommet);
@@ -335,8 +334,6 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 
 		// Incrementation des compteurs d'arcs
 		uiGRANbArcs++;
-		SOMSommet->SOMSetNbrArcPartant(SOMSommet->SOMGetNbrArcPartant() + 1);
-		SOMDestination->SOMSetNbrArcArrivant(SOMSommet->SOMGetNbrArcArrivant() + 1);
 	}
 }
 

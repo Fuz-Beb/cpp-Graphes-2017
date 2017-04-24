@@ -39,12 +39,12 @@ public:
 	/*****************************
 	Constructeur de confort
 	******************************
-	Entrée : unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant
+	Entrée : unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant
 	Necessité : néant
 	Sortie : néant
 	Entraine : l'objet en cours est initialisé
 	*****************************/
-	explicit CSommet(unsigned int uiNumSommet, CArc ** ppqSommetArcArrivant, CArc ** ppqSommetArcPartant);
+	explicit CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant);
 
 	/*****************************
 	Destructeur par défaut
