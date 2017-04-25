@@ -14,6 +14,9 @@ CSommet::CSommet()
 	uiSOMNum = 0;
 	ppqSOMArcArrivant = nullptr;
 	ppqSOMArcPartant = nullptr;
+
+	uiSOMNbrArcArrivant = 0;
+	uiSOMNbrArcPartant = 0;
 }
 
 /*****************************
@@ -44,10 +47,11 @@ CSommet::CSommet(CSommet & sommet)
 	ppqSOMArcArrivant = sommet.ppqSOMArcArrivant;
 	ppqSOMArcPartant = sommet.ppqSOMArcPartant;
 
+	uiSOMNbrArcArrivant = sommet.uiSOMNbrArcArrivant;
+	uiSOMNbrArcPartant = sommet.uiSOMNbrArcPartant;
+
 	// Affectation du numéro
 	uiSOMNum = sommet.uiSOMNum;
-	SOMCompterArc(ppqSOMArcArrivant);
-	SOMCompterArc(ppqSOMArcPartant);
 }
 
 /*****************************
@@ -63,6 +67,10 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * p
 	// Mise à 0 des arcs partant
 	uiSOMNbrArcArrivant = 0;
 	uiSOMNbrArcPartant = 0;
+
+	// Affectation du numéro
+	uiSOMNum = uiNumSommet;
+
 	// Initialisation
 	ppqSOMArcArrivant = nullptr;
 	ppqSOMArcPartant = nullptr;
@@ -86,9 +94,6 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * p
 		ppqSOMArcPartant[0] = ppqSommetArcPartant;
 		uiSOMNbrArcPartant++;
 	}
-
-	// Affectation du numéro
-	uiSOMNum = uiNumSommet;
 }
 
 /*****************************
@@ -105,7 +110,8 @@ CSommet::~CSommet()
 
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
-		delete(ppqSOMArcArrivant[uiBoucle]);
+		if(ppqSOMArcArrivant != nullptr && ppqSOMArcArrivant[uiBoucle])
+			free(ppqSOMArcArrivant[uiBoucle]);
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
@@ -113,15 +119,21 @@ CSommet::~CSommet()
 	uiBoucle = 0;
 	// Boucle pour liberer la liste des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
-		delete(ppqSOMArcPartant[uiBoucle]);
+		if(ppqSOMArcPartant != nullptr && ppqSOMArcArrivant[uiBoucle] != nullptr)
+			free(ppqSOMArcPartant[uiBoucle]); // Ne pas modifier le free
 		ppqSOMArcPartant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
 
-	delete[] ppqSOMArcArrivant;
-	ppqSOMArcArrivant = nullptr;
-	delete[] ppqSOMArcPartant;
-	ppqSOMArcPartant = nullptr;
+	if(ppqSOMArcArrivant != nullptr) {
+		delete[] ppqSOMArcArrivant;
+		ppqSOMArcArrivant = nullptr;
+	}
+	
+	if(ppqSOMArcPartant != nullptr) {
+		delete[] ppqSOMArcPartant;
+		ppqSOMArcPartant = nullptr;
+	}
 }
 
 /*****************************

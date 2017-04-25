@@ -70,6 +70,7 @@ CGraphe::~CGraphe()
 				delete ppqGRASommets[uiBoucle];
 		}
 		delete(ppqGRASommets);
+		ppqGRASommets = nullptr;
 	}
 }
 

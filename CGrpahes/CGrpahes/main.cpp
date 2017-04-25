@@ -27,7 +27,7 @@ void main() {
 		// Affectation des 3 sommets au graphe
 	GRANewGraphe2->GRAAjoutSommet(1, nullptr, nullptr);
 	GRANewGraphe2->GRAAjoutSommet(3, nullptr, nullptr);
-	GRANewGraphe2->GRAAjoutSommet(2, nullptr, nullptr);
+	//GRANewGraphe2->GRAAjoutSommet(2, nullptr, nullptr);
 		// Vérification du compteur général du nombre de sommet dans le graphe
 	//if(GRANewGraphe2->GRAGetNbSommets() != 3)
 	//	throw CException(ERREURTEST, "Erreur du test, il n'y a pas 3 sommets");
@@ -42,12 +42,10 @@ void main() {
 	GRANewGraphe2->GRAAfficherGraphe();
 
 		// Liberation memoire du graphe
-	//delete(GRANewGraphe2);
+	delete(GRANewGraphe2);
 
 	}
 	catch (CException e) {
 		cout << e.EXCLectureMessage() << endl;
 	}
-
-	cout << "test";
 }
