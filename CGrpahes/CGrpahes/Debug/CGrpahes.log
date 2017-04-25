@@ -1,10 +1,13 @@
-﻿La génération a démarré 25/04/2017 21:32:47.
-Projet "C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\CGrpahes.vcxproj" sur le nœud 2 (Build cible(s)).
+﻿La génération a démarré 25/04/2017 21:39:29.
+Projet "C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\CGrpahes.vcxproj" sur le nœud 2 (Rebuild cible(s)).
 ClCompile:
-  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt CArc.cpp CException.cpp CGraphe.cpp CParse.cpp CParseGraphe.cpp CSommet.cpp main.cpp
-  main.cpp
-  CSommet.cpp
-  CParseGraphe.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CArc.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CArc.cpp
+  CArc.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CException.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CException.cpp
+  CException.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CGraphe.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CGraphe.cpp
+  CGraphe.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CParse.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CParse.cpp
   CParse.cpp
 c:\users\bebo\source\repos\cpp-graphes-2017\cgrpahes\cgrpahes\cparse.cpp(80): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(191) : voir la déclaration de 'strncpy'
@@ -14,10 +17,12 @@ c:\users\bebo\source\repos\cpp-graphes-2017\cgrpahes\cgrpahes\cparse.cpp(218): w
           c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(191) : voir la déclaration de 'strncpy'
 c:\users\bebo\source\repos\cpp-graphes-2017\cgrpahes\cgrpahes\cparse.cpp(219): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
           c:\program files (x86)\microsoft visual studio 11.0\vc\include\string.h(191) : voir la déclaration de 'strncpy'
-  CGraphe.cpp
-  CException.cpp
-  CArc.cpp
-  Génération de code en cours...
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CParseGraphe.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CParseGraphe.cpp
+  CParseGraphe.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\CSommet.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet CSommet.cpp
+  CSommet.cpp
+  C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /Od /Oy- /D CODE_ANALYSIS /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze /analyze:log "Debug\main.cpp.nativecodeanalysis.xml" /analyze:pluginlocalespc.dll /errorReport:prompt   /analyze:quiet main.cpp
+  main.cpp
 Link:
   C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Visual Leak Detector\lib\Win32" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.lib" /MACHINE:X86 Debug\CArc.obj
   Debug\CException.obj
@@ -27,8 +32,14 @@ Link:
   Debug\CSommet.obj
   Debug\main.obj
   CGrpahes.vcxproj -> C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.exe
-Génération du projet "C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\CGrpahes.vcxproj" terminée (Build cible(s)).
+cgraphe.cpp(147): warning : C6308: 'realloc' peut retourner un pointeur Null : l'attribution d'un pointeur Null à 'ppqGRASommets' passé comme argument à 'realloc' peut entraîner une fuite du bloc de mémoire d'origine.
+cgraphe.cpp(202): warning : C6308: 'realloc' peut retourner un pointeur Null : l'attribution d'un pointeur Null à 'ppqGRASommets' passé comme argument à 'realloc' peut entraîner une fuite du bloc de mémoire d'origine.
+cparse.cpp(160): warning : C6308: 'realloc' peut retourner un pointeur Null : l'attribution d'un pointeur Null à 'psBuffer' passé comme argument à 'realloc' peut entraîner une fuite du bloc de mémoire d'origine.
+cparse.cpp(214): warning : C6280: 'psConcatenate' est alloué avec 'malloc', mais supprimé avec 'delete'.
+csommet.cpp(313): warning : C6308: 'realloc' peut retourner un pointeur Null : l'attribution d'un pointeur Null à 'ppqSOMArcArrivant' passé comme argument à 'realloc' peut entraîner une fuite du bloc de mémoire d'origine.
+csommet.cpp(358): warning : C6308: 'realloc' peut retourner un pointeur Null : l'attribution d'un pointeur Null à 'ppqSOMArcPartant' passé comme argument à 'realloc' peut entraîner une fuite du bloc de mémoire d'origine.
+Génération du projet "C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\CGrpahes.vcxproj" terminée (Rebuild cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:05.35
+Temps écoulé 00:01:38.24

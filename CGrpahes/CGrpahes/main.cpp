@@ -27,14 +27,14 @@ void main() {
 		// Affectation des 3 sommets au graphe
 	GRANewGraphe2->GRAAjoutSommet(1, nullptr, nullptr);
 	GRANewGraphe2->GRAAjoutSommet(3, nullptr, nullptr);
-	//GRANewGraphe2->GRAAjoutSommet(2, nullptr, nullptr);
+	GRANewGraphe2->GRAAjoutSommet(2, nullptr, nullptr);
 		// Vérification du compteur général du nombre de sommet dans le graphe
-	//if(GRANewGraphe2->GRAGetNbSommets() != 3)
-	//	throw CException(ERREURTEST, "Erreur du test, il n'y a pas 3 sommets");
+	if(GRANewGraphe2->GRAGetNbSommets() != 3)
+		throw CException(ERREURTEST, "Erreur du test, il n'y a pas 3 sommets");
 			// Ajouter des arcs
 				// 1 vers 3
 	GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
-	//GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
+	GRANewGraphe2->GRAAjoutArc(3, GRANewGraphe2->GRATrouverSommet(1));
 	// ICI !!!!! FUITE SI JE LEVE L EXCEPTION !!!!!!!
 
 			// Affichage du graphe
