@@ -106,6 +106,23 @@ Entraine : l'objet est détruit
 *****************************/
 CSommet::~CSommet()
 {
+	for(unsigned int uiBoucle = 0 ; uiBoucle < uiSOMNbrArcArrivant ; uiBoucle++) {
+		if(ppqSOMArcArrivant[uiBoucle] != nullptr)
+			delete ppqSOMArcArrivant[uiBoucle];
+	}
+
+	for(unsigned int uiBoucle = 0 ; uiBoucle < uiSOMNbrArcPartant; uiBoucle++) {
+		if(ppqSOMArcPartant[uiBoucle] != nullptr)
+			delete ppqSOMArcPartant[uiBoucle];
+	}
+
+	if(ppqSOMArcArrivant != nullptr)
+		free(ppqSOMArcArrivant);
+
+	if(ppqSOMArcPartant != nullptr)
+		free(ppqSOMArcPartant);
+
+	/*
 	unsigned int uiBoucle = 0;
 
 	// Boucle pour liberer la liste des arcs arrivant
@@ -134,6 +151,7 @@ CSommet::~CSommet()
 		delete[] ppqSOMArcPartant;
 		ppqSOMArcPartant = nullptr;
 	}
+	*/
 }
 
 /*****************************
@@ -292,7 +310,7 @@ void CSommet::SOMAddArcArrivant(CArc * arc)
 	// Sinon reallocation
 	else {
 		// Reallocation des arcs arrivant
-		(CArc **)realloc(ppqSOMArcArrivant, sizeof(CArc *) * (uiSOMNbrArcArrivant + 1));
+		ppqSOMArcArrivant = (CArc **)realloc(ppqSOMArcArrivant, sizeof(CArc *) * (uiSOMNbrArcArrivant + 1));
 		if(ppqSOMArcArrivant == nullptr) {
 			delete(arc);
 			arc = nullptr;
@@ -337,7 +355,7 @@ void CSommet::SOMAddArcPartant(CArc * arc)
 	// Sinon reallocation
 	else {
 		// Reallocation des arcs arrivant
-		(CArc **)realloc(ppqSOMArcPartant, sizeof(CArc *) * (uiSOMNbrArcPartant + 1));
+		ppqSOMArcPartant = (CArc **)realloc(ppqSOMArcPartant, sizeof(CArc *) * (uiSOMNbrArcPartant + 1));
 		if(ppqSOMArcPartant == nullptr) {
 			delete(arc);
 			arc = nullptr;
