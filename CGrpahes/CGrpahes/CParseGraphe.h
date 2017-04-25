@@ -27,16 +27,6 @@ private:
 	unsigned int PAGLireNbSommets();
 
 	/*****************************
-	Methode : Assigner Nombre Sommets
-	******************************
-	Entrée : néant
-	Necessité : Méthode Traiter fichier / Ouvrir fichier
-	Sortie : néant
-	Entraine : Assigner le nombre de sommets lu
-	*****************************/
-	void PAGAssignerNbSommets();
-
-	/*****************************
 	Methode : Lire Nombre Arcs
 	******************************
 	Entrée : néant
@@ -45,16 +35,6 @@ private:
 	Entraine : Retourne le nombre d'arcs qui a été précédemment lu
 	*****************************/
 	unsigned int PAGLireNbArcs();
-
-	/*****************************
-	Methode : Assigner Nombre Arcs
-	******************************
-	Entrée : néant
-	Necessité : Méthode Traiter fichier / Ouvrir fichier
-	Sortie : néant
-	Entraine : Assigner le nombre d'arcs lu
-	*****************************/
-	void PAGAssignerNbArcs();
 	
 public:
 	// Constructeur

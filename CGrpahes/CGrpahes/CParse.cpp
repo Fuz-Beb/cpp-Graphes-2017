@@ -275,11 +275,76 @@ int CParse::PARRechercheCaractere(char sCaractere, char * psChaine)
 {
 	unsigned int uiBoucle = 0;
 
-	while (uiBoucle < strlen(psChaine))
+	while (uiBoucle < strlen(psChaine) && psChaine[uiBoucle] != '\0')
 	{
 		if (psChaine[uiBoucle] == sCaractere)
 			return uiBoucle;
 		uiBoucle++;
 	}
 	return -1;
+}
+
+/*****************************
+Methode : Recuperer la chaine presente apres le premier caractere '=' rencontre
+******************************
+Entrée : char * psChaineAvantEgal, char * sBuffer
+Necessité : Méthode Ouvrir fichier
+Sortie : int
+Entraine : retourne le int apres le caractere '='
+*****************************/
+int CParse::PARValeurApresSigneEgal(char * psChaineAvantEgal, char * sBuffer) {
+
+	// Déclarations des variables
+	char * sRetour = nullptr;
+
+	// Récupération du préfixe a gauche du signe '='
+	sRetour = PARSubString(sBuffer, 0, strlen(psChaineAvantEgal));
+
+	// Comparaison du préfixe avec celui donné en paramètre
+	if(strcmp(sRetour, psChaineAvantEgal) == 1) {
+		delete(sBuffer);
+		delete(sRetour);
+		throw CException(FORMATFICHIERINCORRECTE, "Erreur : Balise incorrecte dans le fichier");
+	}
+
+	delete(sRetour);
+
+	// Récupération de la valeur située à droite du signe '='
+	sRetour = PARSubString(sBuffer, PARRechercheCaractere('=', sBuffer) + 1, strlen(sBuffer) - strlen(psChaineAvantEgal));
+
+	if(sRetour == NULL) {
+		delete(sBuffer);
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
+	}
+
+	// Retourne la conversion du string vers un int
+	return atoi(sRetour);
+}
+
+/*****************************
+Methode : Compare deux chaines de caractères
+******************************
+Entrée : char * psChaineUn, char * psChaineDeux
+Necessité : Méthode Ouvrir fichier
+Sortie : boolean
+Entraine : retourne true si les deux chaines sont identiques et faux sinon
+*****************************/
+int CParse::PARCompareChaine(char * psChaineUn, char * psChaineDeux)
+{
+	if (psChaineUn == nullptr || psChaineDeux == nullptr)
+		throw CException(ERREURARGS, "Les deux chaines passées en paramètre ne peuvent pas être null");
+
+	PARConvertirStrMinusc(psChaineUn);
+	PARConvertirStrMinusc(psChaineDeux);
+
+	if (strcmp(psChaineUn, psChaineDeux) == 1) {
+		delete(psChaineUn);
+		delete(psChaineDeux);
+		return false;
+	}
+	else {
+		delete(psChaineUn);
+		delete(psChaineDeux);
+		return true;
+	}
 }

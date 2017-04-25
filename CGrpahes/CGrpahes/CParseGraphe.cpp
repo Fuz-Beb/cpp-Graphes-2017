@@ -1,12 +1,13 @@
-#include "CParseGraphe.h"
+ï»¿#include "CParseGraphe.h"
+#include "CException.h"
 
 /*****************************
-Constructeur par défaut
+Constructeur par dï¿½faut
 ******************************
-Entrée : néant
-Necessité : néant
-Sortie : néant
-Entraine : l'objet en cours est initialisé
+Entrï¿½e : nï¿½ant
+Necessitï¿½ : nï¿½ant
+Sortie : nï¿½ant
+Entraine : l'objet en cours est initialisï¿½
 *****************************/
 CParseGraphe::CParseGraphe()
 {
@@ -16,10 +17,10 @@ CParseGraphe::CParseGraphe()
 /*****************************
 Methode : Retourner Graphe
 ******************************
-Entrée : néant
-Necessité : néant
+Entrï¿½e : nï¿½ant
+Necessitï¿½ : nï¿½ant
 Sortie : Retourne un pointeur sur l'attribut de graGraphe
-Entraine : Création d'un objet/pointeur en appellant le constructeur de recopie de CGraphe
+Entraine : Crï¿½ation d'un objet/pointeur en appellant le constructeur de recopie de CGraphe
 *****************************/
 CGraphe * CParseGraphe::PAGRetournerGraphe()
 {
@@ -29,10 +30,10 @@ CGraphe * CParseGraphe::PAGRetournerGraphe()
 /*****************************
 Methode : Lire Nombre Sommets
 ******************************
-Entrée : néant
-Necessité : néant
+Entrï¿½e : nï¿½ant
+Necessitï¿½ : nï¿½ant
 Sortie : unsigned int
-Entraine : Retourne le nombre de sommets précédemment lu
+Entraine : Retourne le nombre de sommets prï¿½cï¿½demment lu
 *****************************/
 unsigned int CParseGraphe::PAGLireNbSommets()
 {
@@ -40,63 +41,12 @@ unsigned int CParseGraphe::PAGLireNbSommets()
 }
 
 /*****************************
-Methode : Assigner Nombre Sommets
-******************************
-Entrée : néant
-Necessité : Méthode Traiter fichier / Ouvrir fichier
-Sortie : néant
-Entraine : Assigner le nombre de sommets lu
-*****************************/
-void CParseGraphe::PAGAssignerNbSommets()
-{
-	try {
-		char * sBuffer = nullptr, * sRetour = nullptr;
-
-		sBuffer = CParse::PARLireLigne();
-
-		// Verification du préfixe de la valeur du nombre de sommets
-		sRetour = PARSubString(sBuffer, 0, 10);
-
-		if(strcmp(sRetour, "nbsommets=") == 1) {
-			delete(sBuffer);
-			delete(sRetour);
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de NBSommets=");
-		}
-
-		delete(sRetour);
-
-		// Vérification de la valeur
-		sRetour = PARSubString(sBuffer, 10, strlen(sBuffer) - 10);
-
-		if(sRetour == NULL) {
-			delete(sBuffer);
-			throw CException(ECHECALLOCATION, "Echec de l'allocation");
-		}
-
-		// Conversion string vers int
-		uiNbSommets = atoi(sRetour);
-
-		delete(sBuffer);
-		delete(sRetour);
-
-		if(uiNbSommets < 0)
-			throw CException(ERREURTAILLE, "Erreur de la taille");
-
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
-		cout << "Appuyer sur une touche pour quitter le programme";
-		cin.get();
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*****************************
 Methode : Lire Nombre Arcs
 ******************************
-Entrée : néant
-Necessité : néant
+Entrï¿½e : nï¿½ant
+Necessitï¿½ : nï¿½ant
 Sortie : unsigned int
-Entraine : Retourne le nombre d'arcs qui a été précédemment lu
+Entraine : Retourne le nombre d'arcs qui a ï¿½tï¿½ prï¿½cï¿½demment lu
 *****************************/
 unsigned int CParseGraphe::PAGLireNbArcs()
 {
@@ -104,274 +54,108 @@ unsigned int CParseGraphe::PAGLireNbArcs()
 }
 
 /*****************************
-Methode : Assigner Nombre Arcs
-******************************
-Entrée : néant
-Necessité : Méthode Traiter fichier / Ouvrir fichier
-Sortie : néant
-Entraine : Assigner le nombre d'arcs lu
-*****************************/
-void CParseGraphe::PAGAssignerNbArcs()
-{
-	try {
-		char *sBuffer = nullptr, * sRetour = nullptr;
-	
-		sBuffer = PARLireLigne();
-
-		// Verification du préfixe de la valeur du nombre d'arcs
-		sRetour = PARSubString(sBuffer, 0, 7);
-
-		if(strcmp(sRetour, "nbarcs=") == 1) {
-			delete(sBuffer);
-			delete(sRetour);
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de NBArcs=");
-		}
-
-		delete(sRetour);
-
-		// Vérification de la valeur
-		sRetour = PARSubString(sBuffer, 7, strlen(sBuffer) - 7);
-
-		if(sRetour == NULL) {
-			delete(sBuffer);
-			throw CException(ECHECALLOCATION, "Echec de l'allocation");
-		}
-
-		// Conversion string vers int
-		uiNbArcs = atoi(sRetour);
-
-		delete(sBuffer);
-		delete(sRetour);
-
-		if(uiNbArcs < 0)
-			throw CException(ERREURTAILLE, "Erreur de la taille");
-
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
-		cout << "Appuyer sur une touche pour quitter le programme";
-		cin.get();
-		exit(EXIT_FAILURE);
-	}
-}
-
-/*****************************
 Methode : Traiter Sommets
 ******************************
-Entrée : néant
-Necessité :  Méthode Traiter fichier / Ouvrir fichier
-Sortie : néant
-Entraine : La lecture du fichier et création des sommets du graphe
+Entrï¿½e : nï¿½ant
+Necessitï¿½ :  Mï¿½thode Traiter fichier / Ouvrir fichier
+Sortie : nï¿½ant
+Entraine : La lecture du fichier et crï¿½ation des sommets du graphe
 *****************************/
 void CParseGraphe::PAGTraiterSommets()
 {
-	try {
-		// Initialisation du buffer ligne par ligne
-		char *sBuffer = nullptr, * sRetour = nullptr;
+	// Initialisation du buffer ligne par ligne
+	char * sBuffer = nullptr;
 
-		// Initialisation Variables d'indice de boucles
-		unsigned int uiBoucleSommets = 1;
+	// Vï¿½rification que la dï¿½claration des sommets est bien ï¿½ la suite du fichier
+	if (!PARCompareChaine(PARLireLigne(), "sommets=[\n"))
+		throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de Sommets=[");
 
-		while (uiBoucleSommets <= uiNbSommets)
-		{
-			sBuffer = PARLireLigne();
-
-			// Verification du préfixe de la valeur du sommet
-			sRetour = PARSubString(sBuffer, 0, 7);
-
-			if(strcmp(sRetour, "numero=") == 1) {
-				delete(sBuffer);
-				delete(sRetour);
-				graGraphe.GRASetNbSommets(uiBoucleSommets - 1);
-				throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect d'un Numero=");
-			}
-
-			delete(sRetour);
-
-			// Vérification de la valeur
-			sRetour = PARSubString(sBuffer, 7, strlen(sBuffer) - 7);
-
-			if(sRetour == NULL) {
-				delete(sBuffer);
-				throw CException(ECHECALLOCATION, "Echec de l'allocation");
-			}
-
-			// Ajouter le sommet au graphe
-			graGraphe.GRAAjoutSommet(atoi(sRetour), nullptr, nullptr);
-
-			delete(sBuffer);
-			delete(sRetour);
-			uiBoucleSommets++;
-		}
-		sBuffer = PARLireLigne();
-
-		// Verification que nous sommes bien à la fin de la section Sommets
-		sRetour = PARSubString(sBuffer, 0, 1);
-
-		if(strcmp(sRetour, "]") == 1) {
-			delete(sBuffer);
-			delete(sRetour);
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de la fin de la section Sommets");
-		}
-
-		delete(sBuffer);
-		delete(sRetour);
-
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
+	// Dï¿½but de la rï¿½cupï¿½ration de la valeur de chaque sommets
+	for (unsigned int uiBoucleSommets = 1 ; uiBoucleSommets <= uiNbSommets ; uiBoucleSommets++)
+	{
+		// Ajouter le sommet au graphe
+		graGraphe.GRAAjoutSommet(PARValeurApresSigneEgal("numero", PARLireLigne()), nullptr, nullptr);
+		uiBoucleSommets++;
 	}
+
+	// Vï¿½rification de la fin de la dï¿½claration des sommets
+	sBuffer = PARLireLigne();
+
+	// Vï¿½rification que c'est bien la fin de la dï¿½claration des sommets
+	if (!PARCompareChaine(PARSubString(sBuffer, 0, 1), "]"))
+			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de la fin des sommets [");
+
+	delete(sBuffer);
 }
 
 /*****************************
 Methode : Traiter Arcs
 ******************************
-Entrée : néant
-Necessité :  Méthode Traiter fichier / Ouvrir fichier
-Sortie : néant
-Entraine : La lecture du fichier et création des arcs du graphe
+Entrï¿½e : nï¿½ant
+Necessitï¿½ :  Mï¿½thode Traiter fichier / Ouvrir fichier
+Sortie : nï¿½ant
+Entraine : La lecture du fichier et crï¿½ation des arcs du graphe
 *****************************/
 void CParseGraphe::PAGTraiterArcs()
 {
-	try {
-		// Initialisation du buffer ligne par ligne
-		char *sBuffer = nullptr, * sRetour = nullptr;
+	// Initialisation du buffer ligne par ligne
+	char * sBuffer = nullptr;
 
-		// Initialisation Variables d'indice de boucles
-		unsigned int uiBoucleArcs = 1, uiBufferDebut;
+	// Initialisation Variables d'indice de boucles
+	unsigned int uiBufferDebut, uiBufferFin;
 
-		while (uiBoucleArcs <= uiNbArcs)
-		{
-			sBuffer = PARLireLigne();
+	// Vï¿½rification que la dï¿½claration des arcs est bien ï¿½ la suite du fichier
+	if (!PARCompareChaine(PARLireLigne(), "arcs=[\n"))
+		throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de Arcs=[");
 
-			// Verification du préfixe de la valeur du sommet de depart
-			sRetour = PARSubString(sBuffer, 0, 6);
+	// Lecture d'une ligne contenant la mention debut et fin
+	sBuffer = PARLireLigne();
 
-			if(strcmp(sRetour, "debut=") == 1 && PARRechercheCaractere(',', sBuffer) == -1) {
-				delete(sBuffer);
-				delete(sRetour);
-				graGraphe.GRASetNbSommets(uiBoucleArcs - 1);
-				throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect du sommet de depart apres Debut=");
-			}
+	// Dï¿½but de la rï¿½cupï¿½ration de la valeur de chaque sommets
+	for (unsigned int uiBoucleArcs = 1 ; uiBoucleArcs <= uiNbSommets ; uiBoucleArcs++)
+	{
+		// Mï¿½morisation de l'arc de debut puis de fin
+		uiBufferDebut = PARValeurApresSigneEgal("debut", PARSubString(sBuffer, 0, PARRechercheCaractere(',', sBuffer)));
+		uiBufferFin = PARValeurApresSigneEgal("fin", PARSubString(sBuffer, PARRechercheCaractere('f', sBuffer + 5), strlen(sBuffer)));
 
-			delete(sRetour);
-
-			// Vérification de la valeur
-			sRetour = PARSubString(sBuffer, 6, PARRechercheCaractere(',', sBuffer) - 6);
-
-			if(sRetour == NULL) {
-				delete(sBuffer);
-				throw CException(ECHECALLOCATION, "Echec de l'allocation");
-			}
-			// Mémorisation de l'arc de debut
-			uiBufferDebut = atoi(sRetour);
-
-			delete(sRetour);
-
-			// Verification du préfixe de la valeur du sommet de d'arrive
-			sRetour = PARSubString(sBuffer, PARRechercheCaractere(',', sBuffer) + 1, 4);
-
-			if(strcmp(sRetour, "fin=") == 1) {
-				delete(sBuffer);
-				delete(sRetour);
-				graGraphe.GRASetNbSommets(uiBoucleArcs - 1);
-				throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect du sommet de depart apres Fin=");
-			}
-
-			delete(sRetour);
-
-			// Vérification de la valeur
-			sRetour = PARSubString(sBuffer, PARRechercheCaractere(',', sBuffer) + 5, strlen(sBuffer) - PARRechercheCaractere(',', sBuffer) + 5);
-
-			if(sRetour == NULL) {
-				delete(sBuffer);
-				throw CException(ECHECALLOCATION, "Echec de l'allocation");
-			}
-
-			graGraphe.GRATrouverSommet(uiBufferDebut)->SOMAddArcPartant(new CArc(atoi(sBuffer)));
-			graGraphe.GRATrouverSommet(atoi(sRetour))->SOMAddArcArrivant(new CArc(atoi(sBuffer)));
-
-			delete(sBuffer);
-			delete(sRetour);
-			uiBoucleArcs++;
-		}
-		sBuffer = PARLireLigne();
-
-		// Verification que nous sommes bien à la fin de la section Sommets
-		sRetour = PARSubString(sBuffer, 0, 1);
-
-		if(strcmp(sRetour, "]") == 1) {
-			delete(sBuffer);
-			delete(sRetour);
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de la fin de la section Sommets");
-		}
-
-		delete(sBuffer);
-		delete(sRetour);
-
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
+		// Ajout des arcs au graphe
+		graGraphe.GRATrouverSommet(uiBufferDebut)->SOMAddArcPartant(new CArc(uiBufferFin));
+		graGraphe.GRATrouverSommet(uiBufferFin)->SOMAddArcArrivant(new CArc(uiBufferFin));
 	}
+
+	// Vï¿½rification que c'est bien la fin de la dï¿½claration des sommets
+	if (!PARCompareChaine(PARSubString(sBuffer, 0, 1), "]"))
+			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de la fin des arcs [");
+
+	delete(sBuffer);
 }
 
 /*****************************
 Methode : Traiter fichier
 ******************************
-Entrée : char * sChemin
-Necessité : néant
-Sortie : néant
-Entraine : La lecture du fichier et création de la matrice associée
+Entrï¿½e : char * sChemin
+Necessitï¿½ : nï¿½ant
+Sortie : nï¿½ant
+Entraine : La lecture du fichier et crï¿½ation de la matrice associï¿½e
 *****************************/
 void CParseGraphe::PAGTraiterFichier(char * sChemin)
 {
-	try {
-		// Initialisation du buffer ligne par ligne
-		char * sBuffer = nullptr, * sChaineBuffer = nullptr, * sBufferDoubleTemp = nullptr, * sBufferDouble = nullptr;
+	// Mise en place de l'ouverture du fichier
+	PARModifierChemin(sChemin);
+	PAROuvrirFichier(sChemin);
 
-		// Initialisation Variables d'indice de boucles
-		unsigned int uiMaxColonne = 0, uiBoucleBuffer = 0, uiIndiceLigne = 1, uiIndiceColonne = 1, uiBoucleBufferDouble = 0;
+	// Lecture et ï¿½criture attribut du nombre de sommets
+	uiNbSommets = PARValeurApresSigneEgal("nbsommets", PARLireLigne());
 
-		// Mise en place de l'ouverture du fichier
-		PARModifierChemin(sChemin);
-		PAROuvrirFichier(sChemin);
-
-		// Lecture et écriture attribut du nombre de sommets
-		PAGAssignerNbSommets();
-
-		// Lecture et écriture attribut du nombre d'arcs
-		PAGAssignerNbArcs();
+	// Lecture et ï¿½criture attribut du nombre d'arcs
+	uiNbArcs = PARValeurApresSigneEgal("nbarcs", PARLireLigne());
 	
-		// Lire une ligne dans le vide (ligne inutile Sommets=[)
-		sBuffer = PARLireLigne();
+	// Crï¿½ation du graphe selon sa taille lu
+	graGraphe = CGraphe(uiNbSommets, uiNbArcs);
 
-		PARConvertirStrMinusc(sBuffer);
+	// Initialisation des sommets du graphe
+	PAGTraiterSommets();
 
-		if(strcmp(sBuffer, "sommets=[\n") == 1) {
-			delete sBuffer;
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de Sommets=[");
-		}
-
-		delete sBuffer;
-
-		// Création du graphe selon sa taille lu
-		graGraphe = CGraphe(uiNbSommets, uiNbArcs, nullptr);
-
-		// Initialisation des sommets du graphe
-		PAGTraiterSommets();
-
-		// Lire une ligne dans le vide (ligne inutile Arcs=[)
-		sBuffer = PARLireLigne();
-
-		PARConvertirStrMinusc(sBuffer);
-
-		if(strcmp(sBuffer, "arcs=[\n") == 1) {
-			delete sBuffer;
-			throw CException(FORMATFICHIERINCORRECTE, "Lecture incorrect de Arcs=[");
-		}
-
-		delete sBuffer;
-
-		// Initialisation des arcs du graphe
-		PAGTraiterArcs();
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
-	}
+	// Initialisation des arcs du graphe
+	PAGTraiterArcs();
 }

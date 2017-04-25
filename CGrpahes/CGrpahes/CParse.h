@@ -148,5 +148,25 @@ public:
 	Entraine : retourne la position du caractere
 	*****************************/
 	int PARRechercheCaractere(char sCaractere, char * psChaine);
+
+	/*****************************
+	Methode : Recuperer la chaine presente apres le premier caractere '=' rencontre
+	******************************
+	Entrée : char * psChaineAvantEgal, char * sBuffer
+	Necessité : Méthode Ouvrir fichier
+	Sortie : int
+	Entraine : retourne le int apres le caractere '='
+	*****************************/
+	int PARValeurApresSigneEgal(char * psChaineAvantEgal, char * sBuffer);
+
+	/*****************************
+	Methode : Compare deux chaines de caractères
+	******************************
+	Entrée : char * psChaineUn, char * psChaineDeux
+	Necessité : Méthode Ouvrir fichier
+	Sortie : boolean
+	Entraine : retourne true si les deux chaines sont identiques et faux sinon
+	*****************************/
+	int PARCompareChaine(char * psChaineUn, char * psChaineDeux);
 };
 #endif

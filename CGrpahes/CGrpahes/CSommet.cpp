@@ -105,7 +105,7 @@ CSommet::~CSommet()
 
 	// Boucle pour liberer la liste des arcs arrivant
 	while(uiBoucle != uiSOMNbrArcArrivant) {
-		free(ppqSOMArcArrivant[uiBoucle]);
+		delete(ppqSOMArcArrivant[uiBoucle]);
 		ppqSOMArcArrivant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
@@ -113,7 +113,7 @@ CSommet::~CSommet()
 	uiBoucle = 0;
 	// Boucle pour liberer la liste des arcs partant
 	while(uiBoucle != uiSOMNbrArcPartant) {
-		free(ppqSOMArcPartant[uiBoucle]);
+		delete(ppqSOMArcPartant[uiBoucle]);
 		ppqSOMArcPartant[uiBoucle] = nullptr;
 		uiBoucle++;
 	}
