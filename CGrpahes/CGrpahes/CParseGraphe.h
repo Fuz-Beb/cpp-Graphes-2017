@@ -35,6 +35,7 @@ private:
 	Entraine : Retourne le nombre d'arcs qui a été précédemment lu
 	*****************************/
 	unsigned int PAGLireNbArcs();
+
 	
 public:
 	// Constructeur

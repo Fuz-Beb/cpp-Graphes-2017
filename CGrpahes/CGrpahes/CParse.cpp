@@ -66,22 +66,17 @@ Entraine : modification de l'attribut sPARChemin
 *****************************/
 void CParse::PARModifierChemin(char * psParam)
 {
-	try {
-		unsigned int uiTaille = strlen(psParam);
+	unsigned int uiTaille = strlen(psParam);
 
-		if(psPARChemin != NULL)
-			delete(psPARChemin);
+	if(psPARChemin != NULL)
+		delete(psPARChemin);
 
-		psPARChemin = (char*) calloc(uiTaille + 1, sizeof(char));
+	psPARChemin = (char*) calloc(uiTaille + 1, sizeof(char));
 
-		if(psPARChemin == NULL)
-			throw CException(ECHECALLOCATION, "Echec de l'allocation");
+	if(psPARChemin == NULL)
+		throw CException(ECHECALLOCATION, "Echec de l'allocation");
 
-		strncpy(psPARChemin, psParam, uiTaille);
-	} catch(CException & EXCObjet) {
-		std::cerr << "Code d'erreur : " << EXCObjet.EXCLectureCode() << std::endl << EXCObjet.EXCLectureMessage() << std::endl;
-		return;
-	}
+	strncpy(psPARChemin, psParam, uiTaille);
 }
 
 /*****************************
@@ -275,6 +270,8 @@ int CParse::PARRechercheCaractere(char sCaractere, char * psChaine)
 {
 	unsigned int uiBoucle = 0;
 
+	PARConvertirStrMinusc(psChaine);
+
 	while (uiBoucle < strlen(psChaine) && psChaine[uiBoucle] != '\0')
 	{
 		if (psChaine[uiBoucle] == sCaractere)
@@ -296,12 +293,13 @@ int CParse::PARValeurApresSigneEgal(char * psChaineAvantEgal, char * sBuffer) {
 
 	// Déclarations des variables
 	char * sRetour = nullptr;
+	unsigned int uiReturnValue;
 
 	// Récupération du préfixe a gauche du signe '='
 	sRetour = PARSubString(sBuffer, 0, strlen(psChaineAvantEgal));
 
 	// Comparaison du préfixe avec celui donné en paramètre
-	if(strcmp(sRetour, psChaineAvantEgal) == 1) {
+	if(strcmp(sRetour, psChaineAvantEgal) != 0) {
 		delete(sBuffer);
 		delete(sRetour);
 		throw CException(FORMATFICHIERINCORRECTE, "Erreur : Balise incorrecte dans le fichier");
@@ -317,8 +315,12 @@ int CParse::PARValeurApresSigneEgal(char * psChaineAvantEgal, char * sBuffer) {
 		throw CException(ECHECALLOCATION, "Echec de l'allocation");
 	}
 
-	// Retourne la conversion du string vers un int
-	return atoi(sRetour);
+	uiReturnValue = atoi(sRetour);
+
+	delete(sBuffer);
+	delete(sRetour);
+
+	return uiReturnValue;
 }
 
 /*****************************
@@ -335,16 +337,13 @@ int CParse::PARCompareChaine(char * psChaineUn, char * psChaineDeux)
 		throw CException(ERREURARGS, "Les deux chaines passées en paramètre ne peuvent pas être null");
 
 	PARConvertirStrMinusc(psChaineUn);
-	PARConvertirStrMinusc(psChaineDeux);
 
-	if (strcmp(psChaineUn, psChaineDeux) == 1) {
+	if (strcmp(psChaineUn, psChaineDeux) != 0) {
 		delete(psChaineUn);
-		delete(psChaineDeux);
 		return false;
 	}
 	else {
 		delete(psChaineUn);
-		delete(psChaineDeux);
 		return true;
 	}
 }

@@ -70,37 +70,36 @@ Sortie : néant
 Entraine : l'objet en cours est initialisé
 *****************************/
 CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * ppqSommetArcPartant)
-{        
-        // Mise à 0 des arcs partant
-        uiSOMNbrArcArrivant = 0;
-        uiSOMNbrArcPartant = 0;
+{
+	// Mise à 0 des arcs partant
+	uiSOMNbrArcArrivant = 0;
+	uiSOMNbrArcPartant = 0;
 
-        // Affectation du numéro
-        uiSOMNum = uiNumSommet;
+	// Affectation du numéro
+	uiSOMNum = uiNumSommet;
 
-        // Initialisation
-        ppqSOMArcArrivant = nullptr;
-        ppqSOMArcPartant = nullptr;
+	// Initialisation
+	ppqSOMArcArrivant = nullptr;
+	ppqSOMArcPartant = nullptr;
 
-        // Allocation des arcs arrivant
-        if(ppqSommetArcArrivant != nullptr) {
-                ppqSOMArcArrivant = (CArc **)malloc(sizeof(CSommet *));
-                if(ppqSOMArcArrivant == nullptr)
-                        throw new CException(ECHECALLOCATION, "Echec de l'allocation");
-        
-                ppqSOMArcArrivant[0] = ppqSommetArcPartant;
-                uiSOMNbrArcArrivant++;
-        }
-        
-        // Allocation des arcs partant
-        if(ppqSommetArcPartant != nullptr) {
-                ppqSOMArcPartant = (CArc **)malloc(sizeof(CSommet *));
-                if(ppqSOMArcPartant == nullptr)
-                        throw new CException(ECHECALLOCATION, "Echec de l'allocation");
-                
-                ppqSOMArcPartant[0] = ppqSommetArcPartant;
-                uiSOMNbrArcPartant++;
-        }
+	// Allocation des arcs arrivant
+	if (ppqSommetArcArrivant != nullptr) {
+		ppqSOMArcArrivant = (CArc **)malloc(sizeof(CSommet *));
+		if(ppqSOMArcArrivant == nullptr)
+			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+	
+		ppqSOMArcArrivant[0] = ppqSommetArcPartant;
+		uiSOMNbrArcArrivant++;
+	}
+	
+	// Allocation des arcs partant
+	if (ppqSommetArcPartant != nullptr) {
+		ppqSOMArcPartant = (CArc **)malloc(sizeof(CSommet *));
+		if(ppqSOMArcPartant == nullptr)
+			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
+		
+		ppqSOMArcPartant[0] = ppqSommetArcPartant;
+		uiSOMNbrArcPartant++;
 }
 
 /*****************************
@@ -114,58 +113,19 @@ Entraine : l'objet est détruit
 CSommet::~CSommet()
 {
 	unsigned int uiBoucle = 0;
-	// Suppression arc arrivant
-	//if(uiSOMNbrArcArrivant != 0) {
-		for(uiBoucle = 0 ; uiBoucle < uiSOMNbrArcArrivant ; uiBoucle++)
-			if(ppqSOMArcArrivant[uiBoucle] != nullptr)
-				delete ppqSOMArcArrivant[uiBoucle];
 
-		if(ppqSOMArcArrivant != nullptr)
-			free(ppqSOMArcArrivant);
+	for(uiBoucle = 0 ; uiBoucle < uiSOMNbrArcArrivant ; uiBoucle++)
+		if(ppqSOMArcArrivant[uiBoucle] != nullptr)
+			delete ppqSOMArcArrivant[uiBoucle];
 
-		/*if(ppqSOMArcArrivant != nullptr)
-			delete(ppqSOMArcArrivant);*/
-	//}
+	if(ppqSOMArcArrivant != nullptr)
+		free(ppqSOMArcArrivant);
 
-	// Suppression arc partant
-	//if(uiSOMNbrArcPartant != 0) {
-		for(uiBoucle = 0 ; uiBoucle < uiSOMNbrArcPartant; uiBoucle++)
-			if(ppqSOMArcPartant[uiBoucle] != nullptr)
-				delete ppqSOMArcPartant[uiBoucle];
-		if(ppqSOMArcPartant != nullptr)
-			free(ppqSOMArcPartant);
-	//}
-
-	/*
-	unsigned int uiBoucle = 0;
-
-	// Boucle pour liberer la liste des arcs arrivant
-	while(uiBoucle != uiSOMNbrArcArrivant) {
-		if(ppqSOMArcArrivant != nullptr && ppqSOMArcArrivant[uiBoucle])
-			free(ppqSOMArcArrivant[uiBoucle]);
-		ppqSOMArcArrivant[uiBoucle] = nullptr;
-		uiBoucle++;
-	}
-
-	uiBoucle = 0;
-	// Boucle pour liberer la liste des arcs partant
-	while(uiBoucle != uiSOMNbrArcPartant) {
-		if(ppqSOMArcPartant != nullptr && ppqSOMArcArrivant[uiBoucle] != nullptr)
-			free(ppqSOMArcPartant[uiBoucle]); // Ne pas modifier le free
-		ppqSOMArcPartant[uiBoucle] = nullptr;
-		uiBoucle++;
-	}
-
-	if(ppqSOMArcArrivant != nullptr) {
-		delete[] ppqSOMArcArrivant;
-		ppqSOMArcArrivant = nullptr;
-	}
-	
-	if(ppqSOMArcPartant != nullptr) {
-		delete[] ppqSOMArcPartant;
-		ppqSOMArcPartant = nullptr;
-	}
-	*/
+	for(uiBoucle = 0 ; uiBoucle < uiSOMNbrArcPartant; uiBoucle++)
+		if(ppqSOMArcPartant[uiBoucle] != nullptr)
+			delete ppqSOMArcPartant[uiBoucle];
+	if(ppqSOMArcPartant != nullptr)
+		free(ppqSOMArcPartant);
 }
 
 /*****************************
@@ -309,7 +269,10 @@ Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
 void CSommet::SOMAddArcArrivant(CArc * arc)
-{	
+{
+	if (arc == nullptr)
+		throw new CException(ERREURARGS, "L'argument arc ne peut pas être nul");
+
 	// Allocation pour la première fois
 	if(ppqSOMArcArrivant == nullptr) {
 		// Allocation des arcs arrivant
@@ -330,19 +293,9 @@ void CSommet::SOMAddArcArrivant(CArc * arc)
 			arc = nullptr;
 			throw new CException(ECHECALLOCATION, "Echec de l'allocation");
 		}
-
 		ppqSOMArcArrivant[uiSOMNbrArcArrivant] = arc;
-
-		if(ppqSOMArcArrivant[uiSOMNbrArcArrivant] != nullptr)
-			uiSOMNbrArcArrivant++;
-		else {
-			delete(arc);
-			arc = nullptr;
-			delete[] ppqSOMArcArrivant;
-			ppqSOMArcArrivant = nullptr;
-			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
-		}
 	}
+	uiSOMNbrArcArrivant++;
 }
 
 /*****************************
@@ -354,7 +307,10 @@ Sortie : néant
 Entraine : affecte le paramètre arc à la liste des arcs
 *****************************/
 void CSommet::SOMAddArcPartant(CArc * arc)
-{	
+{
+	if (arc == nullptr)
+		throw new CException(ERREURARGS, "L'argument arc ne peut pas être nul");
+
 	// Allocation pour la première fois
 	if(ppqSOMArcPartant == nullptr) {
 		// Allocation des arcs arrivant
@@ -377,17 +333,8 @@ void CSommet::SOMAddArcPartant(CArc * arc)
 		}
 
 		ppqSOMArcPartant[uiSOMNbrArcPartant] = arc;
-
-		if(ppqSOMArcPartant[uiSOMNbrArcPartant] != nullptr)
-			uiSOMNbrArcPartant++;
-		else {
-			delete(arc);
-			arc = nullptr;
-			delete[] ppqSOMArcPartant;
-			ppqSOMArcPartant = nullptr;
-			throw new CException(ECHECADDARC, "Echec lors de l'ajout d'un arc dans SOMAddArcArrivant");
-		}
 	}
+	uiSOMNbrArcPartant++;
 }
 
 /*****************************
