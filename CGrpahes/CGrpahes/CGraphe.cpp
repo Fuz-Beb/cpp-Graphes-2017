@@ -70,7 +70,6 @@ CGraphe::~CGraphe()
 				delete ppqGRASommets[uiBoucle];
 		}
 		delete(ppqGRASommets);
-		ppqGRASommets = nullptr;
 	}
 }
 
@@ -421,6 +420,5 @@ CArc * CGraphe::GRATrouverArc(CSommet * SOMSommetSource, unsigned int uiDestinat
 			if(SOMSommetSource->SOMGetNbrArcPartant() != 0)
 				if(SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs]->ARCGetDestination() ==  uiDestination)
 					return SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs];
-	
 	return nullptr;
 }
