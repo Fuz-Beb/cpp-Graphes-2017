@@ -10,7 +10,7 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CGrapheOperation::CGrapheOperation()
 {
-	__super::CGraphe();
+	CGraphe::CGraphe();
 }
 
 /*****************************
@@ -23,7 +23,7 @@ Entraine : l'objet en paramètre est recopié et initialisé dans un nouvel objet
 *****************************/
 CGrapheOperation::CGrapheOperation(CGrapheOperation & graGrapheOperation)
 {
-	__super::CGraphe(graGrapheOperation);
+	CGraphe::CGraphe(graGrapheOperation);
 }
 
 
@@ -37,7 +37,7 @@ Entraine : l'objet en cours est initialisé
 *****************************/
 CGrapheOperation::CGrapheOperation(unsigned int uiNbSommets, unsigned int uiNbArcs)
 {
-	__super::CGraphe(uiNbSommets, uiNbArcs);
+	CGraphe::CGraphe(uiNbSommets, uiNbArcs);
 }
 
 /*****************************
@@ -50,7 +50,7 @@ Entraine : l'objet est détruit
 *****************************/
 CGrapheOperation::~CGrapheOperation()
 {
-	__super::~CGraphe();
+	CGraphe::~CGraphe();
 }
 
 /*****************************
@@ -63,5 +63,5 @@ Entraine : le graphe de sortie est inverse
 *****************************/
 void inverserGraphe()
 {
-	// To do
+	
 }
