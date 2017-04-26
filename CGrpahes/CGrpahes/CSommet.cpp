@@ -100,6 +100,7 @@ CSommet::CSommet(unsigned int uiNumSommet, CArc * ppqSommetArcArrivant, CArc * p
 		
 		ppqSOMArcPartant[0] = ppqSommetArcPartant;
 		uiSOMNbrArcPartant++;
+	}
 }
 
 /*****************************
