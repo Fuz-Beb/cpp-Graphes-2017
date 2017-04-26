@@ -13,9 +13,6 @@ C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\CGRPAHES\DEBUG\CSOMMET.CPP.
 C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\CGRPAHES\DEBUG\CSOMMET.OBJ
 C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\CGRPAHES\DEBUG\MAIN.CPP.NATIVECODEANALYSIS.XML
 C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\CGRPAHES\DEBUG\MAIN.OBJ
-C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\DEBUG\CGRAPHE.ILK
-C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\DEBUG\CGRAPHE.EXE
-C:\USERS\BEBO\SOURCE\REPOS\CPP-GRAPHES-2017\CGRPAHES\DEBUG\CGRAPHE.PDB
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CArc.obj
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CException.obj
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CGraphe.obj
@@ -23,6 +20,8 @@ C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CParse.obj
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CParseGraphe.obj
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CSommet.obj
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\main.obj
+C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CGraphe.ilk
+C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CGrpahes.ilk
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\cl.command.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CL.read.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CL.write.1.tlog
@@ -30,17 +29,13 @@ C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link-cvtres.
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link-cvtres.write.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link-rc.read.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link-rc.write.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084-cvtres.read.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084-cvtres.write.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084-rc.read.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084-rc.write.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084.read.1.tlog
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.5084.write.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.command.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.read.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\link.write.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\NativeCodeAnalysis.read.1.tlog
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\vc110.idb
+C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CGraphe.pdb
+C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CGrpahes.pdb
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\vc110.pdb
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CArc.cpp.nativecodeanalysis.xml
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CException.cpp.nativecodeanalysis.xml
@@ -51,6 +46,3 @@ C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\CSommet.cpp.
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\main.cpp.nativecodeanalysis.xml
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\CGrpahes\Debug\vc.nativecodeanalysis.all.xml
 C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.pdb
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.exe
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.ilk
-C:\Users\Bebo\Source\Repos\cpp-Graphes-2017\CGrpahes\Debug\CGraphe.exe.lastcodeanalysissucceeded

@@ -16,8 +16,8 @@ void main() {
 // Il reste les méthodes comme modifier...
 void testMethodesGraphe() {
 	// Declaration des graphes
-	CGraphe * GRANewGraphe1 = new CGraphe();
-	CGraphe * GRANewGraphe2 = new CGraphe();
+	CGraphe * GRANewGraphe1 = nullptr;
+	CGraphe * GRANewGraphe2 = nullptr;
 
 	try {
 		GRANewGraphe1 = new CGraphe();
@@ -105,6 +105,9 @@ void testMethodesSommet() {
 		if(SOMNewSommetDefaut == nullptr || SOMNewSommetDefaut->SOMGetNum() != 0 || SOMNewSommetDefaut->SOMGetNbrArcArrivant() != 0 || SOMNewSommetDefaut->SOMGetNbrArcPartant() != 0)
 			throw CException(ECHECNONTROUVE, "Erreur du test");
 		cout << "Test ok" << endl;
+
+		if(SOMNewSommetConfort == nullptr)
+			throw CException(ECHECNONTROUVE, "Erreur sommet");
 	}
 	catch (CException e) {
 		cout << e.EXCLectureMessage() << endl;
