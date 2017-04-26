@@ -10,7 +10,7 @@ void testMethodesSommet();
 // Ne pas garder ce main pour le rendu c'est sale car par .h pour les protos fonctions...
 void main() {
 	//testMethodesGraphe();
-	//testMethodesSommet();
+	testMethodesSommet();
 }
 
 // Il reste les méthodes comme modifier...
@@ -114,7 +114,6 @@ void testMethodesSommet() {
 		// Libération memoire des sommets
 		delete(SOMNewSommetDefaut);
 		delete(SOMNewSommetConfort);
-		// FAIRE UN TEST DANS LE DESTRUCTEUR ARC SI PAS d4ARC ALORS NE RIEN FAIRE !!!!!
 		delete(SOMNewSommetRecopie);
 	}
 	catch (CException e) {
