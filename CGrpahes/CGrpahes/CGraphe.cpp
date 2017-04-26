@@ -276,25 +276,14 @@ void CGraphe::GRAAjoutArc(unsigned int uiDestination, CSommet * SOMSommet)
 		// Verification d'unicite dans le lien / Impossible d'avoir 1 -> 2 et 1 -> 2
 		ARCTrouverArc = GRATrouverArc(SOMSommet, SOMDestination->SOMGetNum());
 
-		if(ARCTrouverArc != nullptr) {
-			delete(SOMSommet);
-			SOMSommet = nullptr;
-			free(SOMDestination);
-			SOMDestination= nullptr;
-			free(ARCTrouverArc);
-			//ARCTrouverArc = nullptr;
-
+		if(ARCTrouverArc != nullptr)
 			throw CException(ECHECDOUBLONARC, "Erreur doublon d'arc");
-		}
 
 		// Creation d'un nouvel arc et affectation
 		ARCArcPartant = new CArc(uiDestination);
 
-		if(ARCArcPartant == nullptr) {
-			delete(SOMSommet);
-			SOMSommet = nullptr;
+		if(ARCArcPartant == nullptr)
 			throw CException(ECHECADDARC, "Erreur le nouvel arc n'a pas été créé");
-		}
 
 		SOMSommet->SOMAddArcPartant(ARCArcPartant);
 
@@ -427,21 +416,11 @@ Entraine : cherche et renvoi l'arc
 *****************************/
 CArc * CGraphe::GRATrouverArc(CSommet * SOMSommetSource, unsigned int uiDestination)
 {
-	CArc * ARCArc = nullptr;
-
-	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++) {
-		for(unsigned int uiBoucleArcs = 0 ; uiBoucleArcs < uiGRANbArcs ; uiBoucleArcs++) {
-			
-			ARCArc = SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs];
-
-			if(ARCArc->CArc::ARCGetDestination() ==  uiDestination)
-				return ARCArc;
-
-			uiBoucleArcs++;
-		}
-
-		uiBoucleSommet++;
-	}
+	for(unsigned int uiBoucleSommet = 0 ; uiBoucleSommet < uiGRANbSommets ; uiBoucleSommet++)
+		for(unsigned int uiBoucleArcs = 0 ; uiBoucleArcs < uiGRANbArcs ; uiBoucleArcs++)
+			if(SOMSommetSource->SOMGetNbrArcPartant() != 0)
+				if(SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs]->ARCGetDestination() ==  uiDestination)
+					return SOMSommetSource->SOMGetListArcPartant()[uiBoucleArcs];
 	
-	return ARCArc;
+	return nullptr;
 }

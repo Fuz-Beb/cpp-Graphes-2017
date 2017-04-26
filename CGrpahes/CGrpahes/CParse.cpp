@@ -211,7 +211,7 @@ char * CParse::PARConcatenateString(const char * psStr1, const char * psStr2)
 		char * psConcatenate = (char*)malloc(strlen(psStr1) + strlen(psStr2) + 1);
 
 		if(psConcatenate == NULL) {
-			delete(psConcatenate);
+			free(psConcatenate);
 			throw CException(ECHECALLOCATION, "Echec de l'allocation");
 		}
 

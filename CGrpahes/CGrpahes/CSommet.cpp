@@ -332,7 +332,7 @@ void CSommet::SOMAddArcArrivant(CArc * arc)
 }
 
 /*****************************
-Methode : Ajouter Arc Parant
+Methode : Ajouter Arc Partant
 ******************************
 Entrée : CArc * arc
 Necessité : néant
