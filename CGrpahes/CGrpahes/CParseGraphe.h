@@ -2,7 +2,7 @@
 #define C_PARSEGRAPHE_H
 
 #include "CParse.h"
-#include "CGraphe.h"
+#include "CGrapheOperation.h"
 #include <string>
 #include <stdio.h>
 
@@ -12,7 +12,7 @@ private:
 	// Attributs
 	unsigned int uiNbSommets;
 	unsigned int uiNbArcs;
-	CGraphe graGraphe;
+	CGrapheOperation graGraphe;
 	
 	// Accesseurs
 
@@ -60,7 +60,7 @@ public:
 	Sortie : Retourne un pointeur sur l'attribut de graGraphe
 	Entraine : Création d'un objet/pointeur en appellant le constructeur de recopie de CGraphe
 	*****************************/
-	CGraphe * PAGRetournerGraphe();
+	CGrapheOperation * PAGRetournerGraphe();
 
 	/*****************************
 	Methode : Traiter Sommets

@@ -1,5 +1,6 @@
 #include "CParse.h"
 #include "CException.h"
+#pragma warning(disable:4996)
 
 /*****************************
 Constructeur par défaut

@@ -11,7 +11,7 @@ Entraine : l'objet en cours est initialise
 *****************************/
 CParseGraphe::CParseGraphe()
 {
-	graGraphe = CGraphe();
+	graGraphe = CGrapheOperation();
 }
 
 /*****************************
@@ -22,9 +22,9 @@ Necessite : neant
 Sortie : Retourne un pointeur sur l'attribut de graGraphe
 Entraine : Creation d'un objet/pointeur en appellant le constructeur de recopie de CGraphe
 *****************************/
-CGraphe * CParseGraphe::PAGRetournerGraphe()
+CGrapheOperation * CParseGraphe::PAGRetournerGraphe()
 {
-	return new CGraphe(graGraphe);
+	return new CGrapheOperation(graGraphe);
 }
 
 /*****************************
@@ -135,8 +135,7 @@ void CParseGraphe::PAGTraiterArcs()
 		if (graGraphe.GRATrouverSommet(uiBufferDebut) == nullptr || graGraphe.GRATrouverSommet(uiBufferFin) == nullptr)
 			throw CException(FORMATFICHIERINCORRECTE, "Un arc essaye de rejoindre un sommet qui n'existe pas");
 
-		graGraphe.GRATrouverSommet(uiBufferDebut)->SOMAddArcPartant(new CArc(uiBufferFin));
-		graGraphe.GRATrouverSommet(uiBufferFin)->SOMAddArcArrivant(new CArc(uiBufferFin));
+		graGraphe.GRAAjoutArc(uiBufferFin, graGraphe.GRATrouverSommet(uiBufferDebut));
 	}
 
 	// Verification de la fin de la declaration des sommets
@@ -172,7 +171,7 @@ void CParseGraphe::PAGTraiterFichier(char * sChemin)
 	uiNbArcs = PARValeurApresSigneEgal("nbarcs", PARLireLigne());
 	
 	// Creation du graphe selon sa taille lu
-	graGraphe = CGraphe(0, uiNbArcs);
+	graGraphe = CGrapheOperation();
 
 	// Initialisation des sommets du graphe
 	PAGTraiterSommets();
@@ -180,5 +179,6 @@ void CParseGraphe::PAGTraiterFichier(char * sChemin)
 	// Initialisation des arcs du graphe
 	PAGTraiterArcs();
 
+	// Affichage du graphe
 	graGraphe.GRAAfficherGraphe();
 }

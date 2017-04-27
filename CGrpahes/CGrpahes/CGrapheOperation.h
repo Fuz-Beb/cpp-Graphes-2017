@@ -56,9 +56,9 @@ public:
 	******************************
 	Entrée : neant
 	Necessité : neant
-	Sortie : neant
+	Sortie : CGrapheOperation *
 	Entraine : le graphe de sortie est inverse
 	*****************************/
-	void inverserGraphe();
+	CGrapheOperation * GRAInverserGraphe();
 };
 #endif
